@@ -1,0 +1,2870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1A1208" id="themeColorMeta">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="旧金山">
+<meta name="description" content="从过去挖掘人生智慧，把遗憾变成财富">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta name="referrer" content="no-referrer">
+<title>旧金山 · Old Gold Mountain</title>
+<link rel="manifest" href="./manifest.webmanifest" id="pwa-manifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+/* ============================================================
+   CSS VARIABLES - DARK (DEFAULT)
+   ============================================================ */
+:root {
+  --gold-deep:    #7A5A10;
+  --gold-mid:     #C9952A;
+  --gold-light:   #F0C040;
+  --gold-pale:    #FDF3D7;
+  --gold-shine:   #FFE270;
+  --gold-glow:    rgba(240,192,64,0.18);
+  --bg:           #120E06;
+  --bg-card:      #1E1609;
+  --bg-surface:   #271C0C;
+  --bg-elevated:  #2E2210;
+  --bg-input:     #1A1208;
+  --text-h:       #FAF0D0;
+  --text-1:       #EAD8A8;
+  --text-2:       #C8A86B;
+  --text-3:       #8A6F42;
+  --text-4:       #5A4A28;
+  --green:        #27AE60;
+  --green-dim:    rgba(39,174,96,0.14);
+  --red:          #C0392B;
+  --red-dim:      rgba(192,57,43,0.14);
+  --blue:         #2471A3;
+  --blue-dim:     rgba(36,113,163,0.14);
+  --border-gold:  rgba(201,149,42,0.22);
+  --border-gold-strong: rgba(201,149,42,0.42);
+  --border-dim:   rgba(255,255,255,0.06);
+  --shadow-sm:    0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md:    0 4px 20px rgba(0,0,0,0.4);
+  --shadow-gold:  0 4px 24px rgba(201,149,42,0.25);
+  --shadow-gold-lg: 0 8px 40px rgba(201,149,42,0.35);
+  --r-xs: 6px; --r-sm: 10px; --r-md: 16px; --r-lg: 22px; --r-xl: 28px; --r-full: 9999px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 0.15s; --t-base: 0.25s; --t-slow: 0.4s;
+  --nav-h: 72px; --topbar-h: 56px;
+}
+
+/* ============================================================
+   CSS VARIABLES - LIGHT (Apple Style)
+   ============================================================ */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --gold-deep:    #8C6A1A;
+  --gold-mid:     #B88516;
+  --gold-light:   #C88A00;
+  --gold-pale:    #FFF7EC;
+  --gold-shine:   #FFD37A;
+  --gold-glow:    rgba(200,138,0,0.10);
+  --bg:           #F2F2F7;
+  --bg-card:      #FFFFFF;
+  --bg-surface:   #F7F7FA;
+  --bg-elevated:  #FFFFFF;
+  --bg-input:     #FFFFFF;
+  --text-h:       #0A0A0C;
+  --text-1:       #1C1C1E;
+  --text-2:       #3A3A3C;
+  --text-3:       #6C6C70;
+  --text-4:       #AEAEB2;
+  --green:        #30D158;
+  --green-dim:    rgba(48,209,88,0.12);
+  --red:          #FF3B30;
+  --red-dim:      rgba(255,59,48,0.10);
+  --blue:         #007AFF;
+  --blue-dim:     rgba(0,122,255,0.10);
+  --border-gold:  rgba(0,0,0,0.08);
+  --border-gold-strong: rgba(184,133,22,0.30);
+  --border-dim:   rgba(0,0,0,0.06);
+  --shadow-sm:    0 2px 12px rgba(0,0,0,0.06);
+  --shadow-md:    0 8px 30px rgba(0,0,0,0.08);
+  --shadow-gold:  0 4px 20px rgba(200,138,0,0.12);
+  --shadow-gold-lg: 0 8px 36px rgba(200,138,0,0.15);
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+html, body {
+  height: 100%; overflow: hidden;
+  background: var(--bg);
+  font-family: 'Noto Sans SC', -apple-system, sans-serif;
+  color: var(--text-1); font-size: 15px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ============================================================
+   APP SHELL
+   ============================================================ */
+#app {
+  position: relative; width: 100%; height: 100%;
+  max-width: 480px; margin: 0 auto;
+  background: var(--bg); overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 0 60px rgba(0,0,0,0.5);
+}
+
+/* ============================================================
+   SPLASH SCREEN
+   ============================================================ */
+#splash {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 35%, #3A2408 0%, #1E1508 40%, #120E06 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 999;
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+:root[data-theme="light"] #splash {
+  background: radial-gradient(ellipse 80% 60% at 50% 35%, #FFF3D0 0%, #FFF8E8 40%, #F2F2F7 100%);
+}
+#splash.hide { opacity: 0; transform: scale(1.04); pointer-events: none; }
+.splash-particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.particle {
+  position: absolute; width: 4px; height: 4px;
+  border-radius: 50%; background: var(--gold-light); opacity: 0;
+  animation: sparkle var(--dur, 3s) ease-in-out var(--delay, 0s) infinite;
+}
+@keyframes sparkle {
+  0%   { opacity: 0; transform: translateY(0) scale(0); }
+  30%  { opacity: 0.9; transform: translateY(-24px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-70px) scale(0); }
+}
+.splash-icon {
+  font-size: 96px; line-height: 1; margin-bottom: 20px;
+  animation: floatY 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 36px rgba(240,192,64,0.55));
+}
+@keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.splash-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 40px; font-weight: 700; color: var(--gold-light);
+  letter-spacing: 8px;
+  text-shadow: 0 0 48px rgba(240,192,64,0.5); margin-bottom: 8px;
+}
+.splash-en { font-size: 12px; letter-spacing: 4px; color: var(--gold-mid); opacity: 0.75; margin-bottom: 36px; }
+.splash-tagline { font-size: 14px; color: var(--text-2); text-align: center; line-height: 2; max-width: 240px; margin-bottom: 52px; opacity: 0.8; }
+.splash-btn {
+  background: linear-gradient(135deg, var(--gold-mid) 0%, var(--gold-light) 100%);
+  color: #1A0E04; border: none; padding: 15px 52px;
+  border-radius: var(--r-full); font-size: 16px; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+  box-shadow: var(--shadow-gold-lg);
+  transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+  letter-spacing: 2px;
+}
+.splash-btn:active { transform: scale(0.95); box-shadow: var(--shadow-gold); }
+
+/* ============================================================
+   ONBOARDING
+   ============================================================ */
+#onboarding {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 25%, #2E1F06 0%, var(--bg) 70%);
+  z-index: 990; display: flex; flex-direction: column;
+  overflow: hidden;
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
+}
+:root[data-theme="light"] #onboarding {
+  background: radial-gradient(ellipse 70% 50% at 50% 25%, #FFF0CC 0%, var(--bg) 70%);
+}
+#onboarding.hide { opacity: 0; transform: scale(1.02); pointer-events: none; }
+.onboard-slides { flex: 1; display: flex; transition: transform 0.42s cubic-bezier(0.4,0,0.2,1); }
+.onboard-slide {
+  min-width: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 48px 36px; text-align: center;
+}
+.onboard-emoji { font-size: 84px; margin-bottom: 28px; animation: floatY 3s ease-in-out infinite; }
+.onboard-title { font-family: 'Noto Serif SC', serif; font-size: 26px; color: var(--gold-light); margin-bottom: 18px; line-height: 1.4; }
+.onboard-desc { font-size: 15px; color: var(--text-2); line-height: 2; max-width: 300px; }
+.onboard-footer {
+  padding: 24px 32px calc(env(safe-area-inset-bottom, 0px) + 32px);
+  display: flex; flex-direction: column; gap: 16px;
+  background: linear-gradient(to top, rgba(18,14,6,0.95) 0%, transparent 100%);
+}
+:root[data-theme="light"] .onboard-footer {
+  background: linear-gradient(to top, rgba(242,242,247,0.98) 0%, transparent 100%);
+}
+.onboard-dots { display: flex; justify-content: center; gap: 8px; }
+.onboard-dot { width: 8px; height: 8px; border-radius: var(--r-full); background: rgba(201,149,42,0.28); transition: all var(--t-base) var(--ease); }
+.onboard-dot.active { background: var(--gold-light); width: 26px; border-radius: 4px; }
+.onboard-next-btn {
+  padding: 15px; border-radius: var(--r-md);
+  background: linear-gradient(135deg, var(--gold-mid), var(--gold-light));
+  border: none; color: #1A0E04; font-size: 16px; font-weight: 700;
+  font-family: inherit; cursor: pointer; letter-spacing: 1px;
+  box-shadow: var(--shadow-gold);
+  transition: transform var(--t-fast) var(--ease), opacity var(--t-fast);
+}
+.onboard-next-btn:active { transform: scale(0.97); opacity: 0.9; }
+.onboard-skip { text-align: center; font-size: 13px; color: var(--text-3); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: color var(--t-fast); }
+.onboard-skip:active { color: var(--text-2); }
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+#main { display: flex; flex-direction: column; height: 100%; }
+
+/* TOP BAR */
+.topbar {
+  background: var(--bg-card);
+  padding: 0 18px; height: var(--topbar-h);
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border-gold);
+  flex-shrink: 0; position: relative; z-index: 10;
+  box-shadow: var(--shadow-sm);
+}
+:root[data-theme="dark"] .topbar {
+  background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-card) 100%);
+}
+.topbar-title { font-family: 'Noto Serif SC', serif; font-size: 18px; color: var(--gold-light); letter-spacing: 2px; font-weight: 600; }
+.topbar-actions { display: flex; align-items: center; gap: 4px; }
+.topbar-btn {
+  width: 36px; height: 36px; border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background var(--t-fast), color var(--t-fast);
+  color: var(--text-3); font-size: 17px;
+  border: none; background: transparent; position: relative;
+}
+.topbar-btn:hover, .topbar-btn:active { background: var(--gold-glow); color: var(--gold-light); }
+:root[data-theme="light"] .topbar-btn { color: var(--text-2); }
+:root[data-theme="light"] .topbar-btn:hover, :root[data-theme="light"] .topbar-btn:active { color: var(--gold-mid); }
+.topbar-btn .badge {
+  position: absolute; top: 4px; right: 4px;
+  width: 8px; height: 8px; background: var(--gold-light);
+  border-radius: 50%; border: 2px solid var(--bg-card); display: none;
+}
+.topbar-btn .badge.show { display: block; }
+
+/* PAGE CONTAINER */
+.page { flex: 1; overflow-y: auto; overflow-x: hidden; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px)); display: none; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+.page.active { display: block; }
+.page::-webkit-scrollbar { width: 3px; }
+.page::-webkit-scrollbar-track { background: transparent; }
+.page::-webkit-scrollbar-thumb { background: rgba(201,149,42,0.22); border-radius: 2px; }
+
+/* ============================================================
+   BOTTOM NAVIGATION
+   ============================================================ */
+.bottom-nav {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--bg-card);
+  backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border-top: 1px solid var(--border-gold);
+  display: grid; grid-template-columns: 1fr 1fr 72px 1fr 1fr;
+  align-items: center; padding-top: 6px; z-index: 100;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+:root[data-theme="dark"] .bottom-nav {
+  background: linear-gradient(180deg, transparent 0%, rgba(18,14,6,0.95) 20%, var(--bg-card) 50%);
+}
+.nav-item {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 4px; padding: 4px 2px; cursor: pointer;
+  position: relative;
+}
+.nav-item i { font-size: 19px; color: var(--text-4); transition: all var(--t-base) var(--ease); }
+.nav-item span { font-size: 10px; color: var(--text-4); transition: all var(--t-base) var(--ease); letter-spacing: 0.5px; }
+:root[data-theme="light"] .nav-item i { color: var(--text-3); }
+:root[data-theme="light"] .nav-item span { color: var(--text-3); }
+.nav-item.active i { color: var(--gold-light); transform: translateY(-1px); }
+.nav-item.active span { color: var(--gold-mid); }
+:root[data-theme="light"] .nav-item.active i { color: var(--gold-mid); }
+:root[data-theme="light"] .nav-item.active span { color: var(--gold-mid); }
+.nav-item.active::after {
+  content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 24px; height: 3px; background: var(--gold-light); border-radius: 2px 2px 0 0;
+}
+:root[data-theme="light"] .nav-item.active::after { background: var(--gold-mid); }
+.nav-center-wrapper {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 4px; cursor: pointer; margin-top: -18px;
+}
+.nav-center-btn {
+  width: 54px; height: 54px; border-radius: var(--r-full);
+  background: linear-gradient(135deg, var(--gold-mid), var(--gold-light));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 18px rgba(201,149,42,0.45);
+  transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+}
+.nav-center-btn i { font-size: 22px; color: #1A0E04; }
+.nav-center-btn:active { transform: scale(0.93); }
+.nav-center-label { font-size: 10px; color: var(--text-4); letter-spacing: 0.5px; }
+:root[data-theme="light"] .nav-center-label { color: var(--text-3); }
+
+/* ============================================================
+   HOME PAGE
+   ============================================================ */
+.home-hero {
+  background: linear-gradient(160deg, var(--bg-elevated) 0%, var(--bg-card) 60%, var(--bg) 100%);
+  padding: 20px 20px 16px; position: relative; overflow: hidden;
+}
+:root[data-theme="light"] .home-hero { background: linear-gradient(160deg, #FFF8E8 0%, var(--bg-card) 60%, var(--bg) 100%); }
+.home-hero::after { content:''; position:absolute; right:-30px; top:-30px; width:160px; height:160px; border-radius:50%; background: radial-gradient(circle, rgba(240,192,64,0.08) 0%, transparent 70%); }
+.home-greeting { font-family: 'Noto Serif SC', serif; font-size: 20px; color: var(--text-h); font-weight: 600; margin-bottom: 4px; }
+.home-date { font-size: 12px; color: var(--text-3); margin-bottom: 14px; letter-spacing: 1px; }
+.streak-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(240,192,64,0.1); border: 1px solid var(--border-gold);
+  border-radius: var(--r-full); padding: 6px 14px; font-size: 13px; color: var(--text-2);
+}
+.streak-pill i { color: var(--gold-light); }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px 16px; }
+.stat-card {
+  background: var(--bg-card); border: 1px solid var(--border-gold);
+  border-radius: var(--r-md); padding: 16px 18px;
+  cursor: pointer; transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast);
+  box-shadow: var(--shadow-sm);
+}
+.stat-card:active { transform: scale(0.97); }
+.stat-num { font-family: 'Noto Serif SC', serif; font-size: 32px; color: var(--gold-light); font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.stat-label { font-size: 12px; color: var(--text-3); letter-spacing: 0.5px; }
+
+.section-title { font-size: 12px; color: var(--text-3); letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px 8px; }
+
+/* Daily experience */
+.daily-push-card { margin:0 16px 12px; padding:16px; border-radius:var(--r-md); background:linear-gradient(160deg, rgba(122,90,16,0.26) 0%, var(--bg-card) 74%); border:1px solid var(--border-gold-strong); box-shadow:var(--shadow-gold); }
+:root[data-theme="light"] .daily-push-card { background:linear-gradient(160deg, #FFF8E8 0%, #FFFFFF 72%); }
+.daily-push-head { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:10px; }
+.daily-push-tag { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-size:11px; color:var(--gold-light); border:1px solid var(--border-gold); background:rgba(240,192,64,0.10); }
+:root[data-theme="light"] .daily-push-tag { color:var(--gold-mid); }
+.daily-push-date { font-size:11px; color:var(--text-3); white-space:nowrap; }
+.daily-push-title { font-family:'Noto Serif SC', serif; font-size:17px; color:var(--text-h); margin-bottom:8px; }
+.daily-push-body { font-size:14px; color:var(--text-1); line-height:1.8; margin-bottom:10px; }
+.daily-push-insight { font-size:13px; color:var(--text-2); line-height:1.8; margin-bottom:12px; padding-left:10px; border-left:2px solid var(--border-gold); }
+.daily-push-actions { display:flex; flex-wrap:wrap; gap:8px; }
+.secondary-btn, .tertiary-btn { display:inline-flex; align-items:center; gap:6px; padding:10px 14px; border-radius:var(--r-sm); font-family:inherit; font-size:13px; cursor:pointer; transition:transform var(--t-fast) var(--ease), opacity var(--t-fast); }
+.secondary-btn:active, .tertiary-btn:active { transform:scale(0.98); }
+.secondary-btn { border:none; background:linear-gradient(135deg, var(--gold-mid), var(--gold-light)); color:#1A0E04; font-weight:700; }
+.tertiary-btn { border:1px solid var(--border-dim); background:var(--bg-surface); color:var(--text-2); }
+:root[data-theme="light"] .tertiary-btn { background:#F7F7FA; border-color:rgba(0,0,0,0.08); }
+.push-empty { font-size:13px; color:var(--text-3); line-height:1.8; }
+
+/* Meaning check-in */
+.meaning-card { margin:0 16px 12px; padding:16px; border-radius:var(--r-md); background:var(--bg-card); border:1px solid rgba(99,102,241,0.24); box-shadow:var(--shadow-sm); }
+:root[data-theme="light"] .meaning-card { background:#FFFFFF; border-color:rgba(99,102,241,0.16); }
+.meaning-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.meaning-title { font-family:'Noto Serif SC', serif; font-size:17px; color:var(--text-h); margin-bottom:4px; }
+.meaning-desc { font-size:12px; color:var(--text-3); line-height:1.7; }
+.meaning-badge { flex-shrink:0; display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border-radius:999px; font-size:11px; color:#6366F1; background:rgba(99,102,241,0.10); border:1px solid rgba(99,102,241,0.18); }
+.meaning-grid { display:grid; gap:10px; }
+.meaning-row { display:grid; grid-template-columns:1fr 132px; gap:10px; }
+.meaning-helper { font-size:11px; color:var(--text-3); }
+.meaning-actions { display:flex; gap:8px; flex-wrap:wrap; }
+
+/* Meaning type */
+.quick-btn.meaning { background:rgba(99,102,241,0.10); color:#6366F1; }
+:root[data-theme="light"] .quick-btn.meaning { color:#4F46E5; }
+.record-card.meaning { border-left-color:#6366F1; }
+:root[data-theme="light"] .record-card.meaning { border-left-color:#4F46E5; }
+.badge-type.meaning { color:#6366F1; background:rgba(99,102,241,0.10); border-color:rgba(99,102,241,0.22); }
+:root[data-theme="light"] .badge-type.meaning { color:#4F46E5; background:rgba(79,70,229,0.08); border-color:rgba(79,70,229,0.18); }
+.ico-meaning { color:#6366F1; }
+:root[data-theme="light"] .ico-meaning { color:#4F46E5; }
+.sel-meaning { border-color:#6366F1; background:rgba(99,102,241,0.10); color:#6366F1; }
+:root[data-theme="light"] .sel-meaning { border-color:#4F46E5; background:rgba(79,70,229,0.08); color:#4F46E5; }
+
+/* Mine enhancements */
+.mine-sticky-wrap { position:sticky; top:0; z-index:20; padding-top:8px; background:linear-gradient(180deg, var(--bg) 0%, var(--bg) 76%, rgba(0,0,0,0) 100%); }
+:root[data-theme="light"] .mine-sticky-wrap { background:linear-gradient(180deg, var(--bg) 0%, var(--bg) 76%, rgba(242,242,247,0) 100%); }
+.mine-toolbar-card { margin:0 16px 10px; padding:12px 14px; border-radius:var(--r-md); background:var(--bg-card); border:1px solid var(--border-dim); box-shadow:var(--shadow-sm); }
+.mine-toolbar-top { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; }
+.mine-toolbar-title { font-size:12px; color:var(--text-3); letter-spacing:1px; }
+.mine-toolbar-count { font-family:'Noto Serif SC', serif; font-size:24px; color:var(--gold-light); line-height:1; }
+.mine-toolbar-meta { font-size:12px; color:var(--text-3); line-height:1.6; }
+.mine-toolbar-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.mine-select { width:100%; padding:10px 12px; border-radius:var(--r-sm); background:var(--bg-input); color:var(--text-1); border:1px solid var(--border-gold); font-family:inherit; font-size:13px; }
+:root[data-theme="light"] .mine-select { background:#FFFFFF; border-color:rgba(0,0,0,0.10); }
+.month-group { margin-bottom:12px; }
+.month-group-card { margin:0 16px; background:var(--bg-card); border:1px solid var(--border-dim); border-radius:var(--r-md); overflow:hidden; box-shadow:var(--shadow-sm); }
+.month-group-header { width:100%; padding:14px 16px; border:none; background:transparent; color:inherit; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px; font-family:inherit; }
+.month-group-title { font-family:'Noto Serif SC', serif; font-size:16px; color:var(--text-h); text-align:left; }
+.month-group-meta { font-size:11px; color:var(--text-3); margin-top:4px; text-align:left; }
+.month-group-arrow { color:var(--text-3); transition:transform var(--t-fast) var(--ease); }
+.month-group-card.collapsed .month-group-arrow { transform:rotate(-90deg); }
+.month-group-content { padding:0 0 10px; }
+.month-group-card.collapsed .month-group-content { display:none; }
+.month-group-content .record-card { margin:0 10px 10px; }
+.scroll-top-btn { position:fixed; right:16px; bottom:calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 18px); width:44px; height:44px; border:none; border-radius:999px; background:linear-gradient(135deg, var(--gold-mid), var(--gold-light)); color:#1A0E04; box-shadow:var(--shadow-gold); cursor:pointer; z-index:120; opacity:0; pointer-events:none; transform:translateY(10px); transition:all var(--t-base) var(--ease); }
+.scroll-top-btn.show { opacity:1; pointer-events:auto; transform:translateY(0); }
+
+@media (max-width: 640px) {
+  .quick-row { display:grid; grid-template-columns:repeat(4,1fr); }
+  .meaning-row, .mine-toolbar-actions { grid-template-columns:1fr; }
+}
+
+/* Quick row */
+.quick-row { display: flex; gap: 10px; padding: 4px 16px 12px; }
+.quick-btn {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 14px 8px; border-radius: var(--r-md); cursor: pointer;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.5px;
+  transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast);
+  border: 1px solid var(--border-gold);
+}
+.quick-btn i { font-size: 20px; }
+.quick-btn:active { transform: scale(0.96); }
+.quick-btn.experience { background: rgba(39,174,96,0.08); color: #2ECC71; }
+.quick-btn.regret { background: rgba(192,57,43,0.08); color: #E74C3C; }
+.quick-btn.event { background: rgba(36,113,163,0.1); color: #5DADE2; }
+:root[data-theme="light"] .quick-btn.experience { color: #15803d; }
+:root[data-theme="light"] .quick-btn.regret { color: #dc2626; }
+:root[data-theme="light"] .quick-btn.event { color: #2563eb; }
+
+/* Reminder card */
+.reminder-card {
+  margin: 0 16px 12px; background: var(--bg-card);
+  border: 1px solid var(--border-gold-strong);
+  border-radius: var(--r-md); padding: 16px;
+  cursor: pointer; transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast);
+  box-shadow: var(--shadow-gold);
+}
+.reminder-card:active { transform: scale(0.98); box-shadow: var(--shadow-gold); }
+.reminder-chip { font-size: 11px; color: var(--gold-mid); letter-spacing: 1px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.reminder-quote { font-family: 'Noto Serif SC', serif; font-size: 14px; color: var(--text-h); line-height: 1.7; margin-bottom: 8px; }
+.reminder-meta { font-size: 11px; color: var(--text-3); }
+
+/* High-freq warning card */
+.warn-card {
+  margin: 0 16px 12px; padding: 14px 16px;
+  background: rgba(192,57,43,0.07); border: 1px solid rgba(231,76,60,0.25);
+  border-radius: var(--r-md); border-left: 3px solid #E74C3C;
+}
+:root[data-theme="light"] .warn-card { background: rgba(255,59,48,0.06); border-color: rgba(255,59,48,0.2); border-left-color: #FF3B30; }
+.warn-card-title { font-size: 12px; font-weight: 600; color: #E74C3C; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+:root[data-theme="light"] .warn-card-title { color: #FF3B30; }
+.warn-card-body { font-size: 13px; color: var(--text-2); line-height: 1.7; }
+
+/* Record card */
+.record-card {
+  margin: 0 16px 10px; background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-left: 3px solid var(--border-dim);
+  border-radius: var(--r-md); padding: 14px 16px;
+  cursor: pointer; transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast), border-color var(--t-fast);
+  box-shadow: var(--shadow-sm);
+  position: relative; overflow: hidden;
+}
+.record-card::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, transparent, var(--gold-glow), transparent); opacity: 0; transition: opacity var(--t-fast); }
+.record-card:hover { border-color: var(--border-gold); }
+.record-card:active { transform: translateX(3px); box-shadow: var(--shadow-md); }
+.record-card.experience { border-left-color: #2ECC71; }
+.record-card.regret     { border-left-color: #E74C3C; }
+.record-card.event      { border-left-color: #5DADE2; }
+:root[data-theme="light"] .record-card.experience { border-left-color: #15803d; }
+:root[data-theme="light"] .record-card.regret { border-left-color: #dc2626; }
+:root[data-theme="light"] .record-card.event { border-left-color: #2563eb; }
+.record-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.record-body { font-size: 14px; color: var(--text-1); line-height: 1.7; margin-bottom: 8px; }
+.record-lesson { font-size: 12px; color: var(--text-2); font-style: italic; padding-left: 10px; border-left: 2px solid var(--border-gold); margin-bottom: 8px; }
+.record-footer { display: flex; gap: 6px; flex-wrap: wrap; }
+.record-date { font-size: 11px; color: var(--text-4); }
+:root[data-theme="light"] .record-date { color: var(--text-3); }
+
+/* Badge type */
+.badge-type {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 500; padding: 3px 9px;
+  border-radius: var(--r-full); border: 1px solid;
+}
+.badge-type.experience { color: #2ECC71; background: rgba(39,174,96,0.1); border-color: rgba(39,174,96,0.25); }
+.badge-type.regret     { color: #E74C3C; background: rgba(192,57,43,0.1); border-color: rgba(231,76,60,0.25); }
+.badge-type.event      { color: #5DADE2; background: rgba(36,113,163,0.1); border-color: rgba(93,173,226,0.25); }
+:root[data-theme="light"] .badge-type.experience { color: #15803d; background: rgba(21,128,61,0.08); border-color: rgba(21,128,61,0.2); }
+:root[data-theme="light"] .badge-type.regret     { color: #dc2626; background: rgba(220,38,38,0.08); border-color: rgba(220,38,38,0.2); }
+:root[data-theme="light"] .badge-type.event      { color: #2563eb; background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.2); }
+
+/* Chip */
+.chip {
+  font-size: 11px; color: var(--text-3); background: var(--bg-surface);
+  border: 1px solid var(--border-dim); border-radius: var(--r-full);
+  padding: 2px 9px; display: inline-flex; align-items: center; gap: 3px;
+}
+:root[data-theme="light"] .chip { background: var(--bg-surface); color: var(--text-3); border-color: var(--border-dim); }
+
+/* Empty state */
+.empty-state { padding: 52px 24px; text-align: center; }
+.empty-icon { font-size: 52px; margin-bottom: 16px; opacity: 0.7; }
+.empty-state h3 { font-family: 'Noto Serif SC', serif; font-size: 18px; color: var(--text-2); margin-bottom: 10px; }
+.empty-state p { font-size: 13px; color: var(--text-3); line-height: 1.8; }
+
+/* ============================================================
+   ADD PAGE
+   ============================================================ */
+.add-inner { padding: 20px 16px 0; }
+.add-hero { padding: 8px 4px 20px; }
+.add-hero h2 { font-family: 'Noto Serif SC', serif; font-size: 24px; color: var(--text-h); margin-bottom: 6px; }
+.add-hero p { font-size: 13px; color: var(--text-3); }
+
+.form-group { margin-bottom: 20px; }
+.form-label { font-size: 12px; color: var(--text-3); letter-spacing: 1px; margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+.form-label i { color: var(--gold-mid); }
+:root[data-theme="light"] .form-label { color: var(--text-3); }
+.req { color: var(--gold-light); margin-left: 2px; }
+
+.f-textarea, .f-input, .f-select {
+  width: 100%; background: var(--bg-input);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--r-sm); color: var(--text-1);
+  font-family: inherit; font-size: 14px; outline: none;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.f-textarea:focus, .f-input:focus, .f-select:focus {
+  border-color: var(--gold-mid); box-shadow: 0 0 0 3px var(--gold-glow);
+}
+.f-textarea { padding: 12px 14px; resize: none; min-height: 90px; line-height: 1.7; }
+.f-input { padding: 12px 14px; }
+.f-select { padding: 12px 14px; -webkit-appearance: none; cursor: pointer; }
+:root[data-theme="light"] .f-textarea, :root[data-theme="light"] .f-input, :root[data-theme="light"] .f-select {
+  background: #FFFFFF; border-color: rgba(0,0,0,0.12); color: var(--text-1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+:root[data-theme="light"] .f-textarea:focus, :root[data-theme="light"] .f-input:focus, :root[data-theme="light"] .f-select:focus {
+  border-color: var(--gold-mid); box-shadow: 0 0 0 3px rgba(200,138,0,0.12);
+}
+
+/* Type grid */
+.type-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.type-opt {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 14px 6px; border-radius: var(--r-md);
+  border: 1.5px solid var(--border-gold); background: var(--bg-surface);
+  cursor: pointer; font-size: 12px; color: var(--text-2);
+  transition: all var(--t-fast) var(--ease);
+}
+.type-opt i { font-size: 20px; }
+.type-opt:active { transform: scale(0.96); }
+.ico-exp { color: #2ECC71; } .ico-reg { color: #E74C3C; } .ico-evt { color: #5DADE2; }
+:root[data-theme="light"] .ico-exp { color: #15803d; } :root[data-theme="light"] .ico-reg { color: #dc2626; } :root[data-theme="light"] .ico-evt { color: #2563eb; }
+.sel-experience { border-color: #2ECC71; background: rgba(39,174,96,0.1); color: #2ECC71; }
+.sel-regret { border-color: #E74C3C; background: rgba(192,57,43,0.1); color: #E74C3C; }
+.sel-event { border-color: #5DADE2; background: rgba(93,173,226,0.1); color: #5DADE2; }
+:root[data-theme="light"] .sel-experience { border-color: #15803d; background: rgba(21,128,61,0.08); color: #15803d; }
+:root[data-theme="light"] .sel-regret { border-color: #dc2626; background: rgba(220,38,38,0.08); color: #dc2626; }
+:root[data-theme="light"] .sel-event { border-color: #2563eb; background: rgba(37,99,235,0.08); color: #2563eb; }
+
+/* Emotion grid */
+.emotion-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 8px; }
+.emo-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 10px 4px; border-radius: var(--r-sm);
+  background: var(--bg-surface); border: 1.5px solid var(--border-dim);
+  cursor: pointer; font-size: 20px; transition: all var(--t-fast) var(--ease);
+}
+.emo-label { font-size: 9px; color: var(--text-3); letter-spacing: 0.3px; }
+:root[data-theme="light"] .emo-label { color: var(--text-3); }
+.emo-btn.sel { border-color: var(--gold-mid); background: rgba(240,192,64,0.1); box-shadow: 0 0 0 2px var(--gold-glow); }
+.emo-btn:active { transform: scale(0.94); }
+
+/* Reminder grid */
+.reminder-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+.rem-opt {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 12px 4px; border-radius: var(--r-sm);
+  background: var(--bg-surface); border: 1.5px solid var(--border-gold);
+  cursor: pointer; transition: all var(--t-fast) var(--ease);
+}
+.rem-days { font-family: 'Noto Serif SC', serif; font-size: 22px; color: var(--text-1); font-weight: 600; line-height: 1; }
+.rem-label { font-size: 9px; color: var(--text-3); letter-spacing: 0.3px; }
+.rem-opt.sel { border-color: var(--gold-light); background: rgba(240,192,64,0.1); }
+.rem-opt.sel .rem-days { color: var(--gold-light); }
+:root[data-theme="light"] .rem-opt.sel .rem-days { color: var(--gold-mid); }
+:root[data-theme="light"] .rem-opt.sel { border-color: var(--gold-mid); background: rgba(200,138,0,0.08); }
+.rem-opt:active { transform: scale(0.95); }
+
+/* Submit btn */
+.submit-btn {
+  width: 100%; padding: 16px;
+  background: linear-gradient(135deg, var(--gold-mid) 0%, var(--gold-light) 100%);
+  border: none; border-radius: var(--r-md); color: #1A0E04;
+  font-size: 16px; font-weight: 700; font-family: inherit;
+  cursor: pointer; letter-spacing: 1px;
+  box-shadow: var(--shadow-gold); transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.submit-btn:active { transform: scale(0.98); box-shadow: var(--shadow-sm); }
+.submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* ============================================================
+   MINE PAGE
+   ============================================================ */
+.filter-bar { display: flex; gap: 8px; padding: 14px 16px 8px; overflow-x: auto; scrollbar-width: none; }
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter-chip {
+  flex-shrink: 0; padding: 7px 16px; border-radius: var(--r-full);
+  background: var(--bg-surface); border: 1px solid var(--border-gold);
+  font-size: 12px; color: var(--text-3); cursor: pointer;
+  transition: all var(--t-fast) var(--ease); white-space: nowrap;
+}
+.filter-chip.active { background: var(--gold-glow); border-color: var(--gold-mid); color: var(--gold-light); font-weight: 500; }
+:root[data-theme="light"] .filter-chip.active { color: var(--gold-mid); }
+.search-wrap {
+  margin: 4px 16px 12px; display: flex; align-items: center; gap: 10px;
+  background: var(--bg-input); border: 1px solid var(--border-gold);
+  border-radius: var(--r-sm); padding: 10px 14px;
+}
+.search-wrap i { color: var(--text-4); font-size: 14px; }
+:root[data-theme="light"] .search-wrap i { color: var(--text-3); }
+.search-wrap input { flex: 1; background: transparent; border: none; outline: none; color: var(--text-1); font-family: inherit; font-size: 14px; }
+.search-wrap input::placeholder { color: var(--text-4); }
+:root[data-theme="light"] .search-wrap input::placeholder { color: var(--text-3); }
+:root[data-theme="light"] .search-wrap { background: #FFFFFF; border-color: rgba(0,0,0,0.1); }
+
+/* ============================================================
+   REVIEW PAGE
+   ============================================================ */
+.review-hero, .stats-hero, .principles-hero {
+  padding: 20px 20px 10px; position: relative;
+  background: linear-gradient(160deg, var(--bg-elevated) 0%, var(--bg) 100%);
+}
+:root[data-theme="light"] .review-hero, :root[data-theme="light"] .stats-hero, :root[data-theme="light"] .principles-hero {
+  background: linear-gradient(160deg, #FFF8E8 0%, var(--bg) 100%);
+}
+.review-hero h2, .stats-hero h2, .principles-hero h2 { font-family: 'Noto Serif SC', serif; font-size: 22px; color: var(--text-h); margin-bottom: 4px; }
+.review-hero p, .stats-hero p, .principles-hero p { font-size: 12px; color: var(--text-3); letter-spacing: 0.5px; }
+
+/* AI card */
+.ai-card {
+  margin: 12px 16px;
+  background: linear-gradient(160deg, rgba(122,90,16,0.25) 0%, var(--bg-card) 100%);
+  border: 1px solid var(--border-gold); border-radius: var(--r-md); padding: 16px 18px;
+}
+:root[data-theme="light"] .ai-card { background: linear-gradient(160deg, rgba(200,138,0,0.06) 0%, var(--bg-card) 100%); }
+.ai-tag { font-size: 11px; color: var(--gold-mid); letter-spacing: 1px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.ai-body { font-size: 14px; color: var(--text-1); line-height: 1.85; }
+.ai-suggest { font-size: 13px; color: var(--text-2); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-dim); line-height: 1.8; }
+
+/* Review item */
+.review-item {
+  margin: 0 16px 12px; background: var(--bg-card);
+  border: 1px solid var(--border-gold); border-radius: var(--r-md);
+  padding: 16px 18px 14px; position: relative;
+  box-shadow: var(--shadow-sm);
+}
+.done-btn {
+  position: absolute; top: 14px; right: 14px;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid var(--border-gold-strong);
+  background: transparent; color: var(--text-4);
+  cursor: pointer; font-size: 14px;
+  transition: all var(--t-fast) var(--ease);
+  display: flex; align-items: center; justify-content: center;
+}
+:root[data-theme="light"] .done-btn { color: var(--text-3); }
+.done-btn.done { background: var(--green); border-color: var(--green); color: #fff; }
+.done-btn:active { transform: scale(0.92); }
+
+.reflection-input {
+  width: 100%; margin-top: 12px; padding: 10px 12px;
+  background: var(--bg-surface); border: 1px solid var(--border-gold);
+  border-radius: var(--r-sm); color: var(--text-1);
+  font-family: inherit; font-size: 13px; resize: none; min-height: 70px; outline: none;
+  transition: border-color var(--t-fast);
+}
+:root[data-theme="light"] .reflection-input { background: var(--bg-surface); border-color: rgba(0,0,0,0.1); }
+.reflection-input:focus { border-color: var(--gold-mid); }
+.save-reflection-btn {
+  margin-top: 8px; padding: 9px 18px;
+  background: var(--gold-glow); border: 1px solid var(--gold-mid);
+  border-radius: var(--r-sm); color: var(--gold-mid);
+  font-family: inherit; font-size: 13px; cursor: pointer;
+  transition: all var(--t-fast);
+}
+.save-reflection-btn:active { background: rgba(201,149,42,0.22); }
+
+/* ============================================================
+   PRINCIPLES PAGE
+   ============================================================ */
+.principles-section { padding: 0 16px 4px; }
+.principles-section-title {
+  font-size: 11px; color: var(--text-3); letter-spacing: 2px;
+  text-transform: uppercase; padding: 8px 0; margin-bottom: 8px;
+  border-bottom: 1px solid var(--border-dim);
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* Pinned principle */
+.pinned-card {
+  background: linear-gradient(135deg, rgba(240,192,64,0.10) 0%, var(--bg-card) 100%);
+  border: 1px solid var(--border-gold-strong);
+  border-radius: var(--r-md); padding: 14px 16px; margin-bottom: 10px;
+  position: relative; box-shadow: var(--shadow-gold);
+}
+:root[data-theme="light"] .pinned-card { background: linear-gradient(135deg, rgba(200,138,0,0.07) 0%, var(--bg-card) 100%); }
+.pinned-label {
+  font-size: 10px; color: var(--gold-mid); letter-spacing: 1px;
+  margin-bottom: 6px; display: flex; align-items: center; gap: 5px;
+}
+.pinned-text { font-family: 'Noto Serif SC', serif; font-size: 15px; color: var(--text-h); line-height: 1.75; margin-bottom: 8px; }
+.pinned-meta { font-size: 11px; color: var(--text-4); }
+:root[data-theme="light"] .pinned-meta { color: var(--text-3); }
+
+/* Principle item */
+.principle-item {
+  background: var(--bg-card); border: 1px solid var(--border-dim);
+  border-radius: var(--r-md); padding: 14px 16px; margin-bottom: 8px;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  box-shadow: var(--shadow-sm);
+}
+.principle-item:hover { border-color: var(--border-gold); }
+.principle-content { font-size: 14px; color: var(--text-1); line-height: 1.7; margin-bottom: 8px; }
+.principle-action {
+  font-size: 13px; color: var(--text-2); margin-top: 8px; padding: 8px 12px;
+  background: var(--bg-surface); border-radius: var(--r-xs);
+  border-left: 2px solid var(--gold-mid); line-height: 1.6;
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.principle-action.done-action { opacity: 0.6; text-decoration: line-through; border-left-color: var(--green); }
+.principle-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; flex-wrap: wrap; gap: 6px; }
+.principle-source { font-size: 11px; color: var(--text-4); cursor: pointer; }
+:root[data-theme="light"] .principle-source { color: var(--text-3); }
+.principle-source:hover { color: var(--gold-mid); }
+.principle-actions { display: flex; gap: 6px; }
+.btn-icon {
+  width: 28px; height: 28px; border-radius: var(--r-xs);
+  border: 1px solid var(--border-gold); background: transparent;
+  color: var(--text-3); font-size: 12px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--t-fast);
+}
+:root[data-theme="light"] .btn-icon { color: var(--text-3); border-color: var(--border-dim); }
+.btn-icon:hover { background: var(--gold-glow); color: var(--gold-mid); }
+.btn-icon.pinned-active { background: rgba(240,192,64,0.15); color: var(--gold-light); border-color: var(--gold-mid); }
+:root[data-theme="light"] .btn-icon.pinned-active { color: var(--gold-mid); }
+.btn-icon.done-active { background: var(--green-dim); color: var(--green); border-color: rgba(39,174,96,0.3); }
+:root[data-theme="light"] .btn-icon.done-active { color: #15803d; }
+
+/* Domain group */
+.domain-group { margin-bottom: 16px; }
+.domain-group-title { font-size: 12px; color: var(--text-3); padding: 6px 0; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; font-weight: 500; }
+
+/* ============================================================
+   STATS PAGE
+   ============================================================ */
+.chart-card {
+  margin: 0 16px 14px; background: var(--bg-card);
+  border: 1px solid var(--border-gold); border-radius: var(--r-md);
+  padding: 16px 14px 14px; box-shadow: var(--shadow-sm);
+}
+.chart-title { font-size: 13px; color: var(--text-2); margin-bottom: 14px; display: flex; align-items: center; gap: 7px; }
+.chart-title i { color: var(--gold-mid); }
+.chart-wrap { height: 160px; position: relative; }
+
+.wisdom-card {
+  margin: 12px 16px;
+  background: linear-gradient(160deg, var(--bg-elevated) 0%, var(--bg-card) 100%);
+  border: 1px solid var(--border-gold); border-radius: var(--r-md);
+  padding: 20px 18px; cursor: pointer; transition: transform var(--t-fast) var(--ease);
+  box-shadow: var(--shadow-gold);
+}
+:root[data-theme="light"] .wisdom-card { background: linear-gradient(160deg, #FFF8E8 0%, var(--bg-card) 100%); }
+.wisdom-card:active { transform: scale(0.98); }
+.wisdom-text { font-family: 'Noto Serif SC', serif; font-size: 16px; color: var(--text-h); line-height: 1.8; margin-bottom: 10px; }
+.wisdom-hint { font-size: 11px; color: var(--text-3); letter-spacing: 1px; }
+
+/* Pattern card */
+.pattern-card {
+  margin-bottom: 10px; background: var(--bg-card);
+  border: 1px solid var(--border-gold); border-radius: var(--r-md);
+  padding: 14px 16px; box-shadow: var(--shadow-sm);
+}
+.pattern-card-title { font-size: 13px; color: var(--text-2); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; font-weight: 500; }
+.pattern-num { font-family: 'Noto Serif SC', serif; font-size: 28px; color: var(--gold-light); font-weight: 700; line-height: 1; }
+:root[data-theme="light"] .pattern-num { color: var(--gold-mid); }
+.pattern-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+.pattern-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+
+/* ============================================================
+   SETTINGS PANEL
+   ============================================================ */
+#settingsPanel {
+  position: absolute; inset: 0; z-index: 600;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: flex-end;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--t-base) var(--ease);
+}
+:root[data-theme="light"] #settingsPanel { background: rgba(0,0,0,0.3); }
+#settingsPanel.show { opacity: 1; pointer-events: all; }
+.settings-sheet {
+  width: 100%; background: var(--bg-card);
+  border-radius: 28px 28px 0 0;
+  padding: 20px 20px calc(env(safe-area-inset-bottom, 0px) + 32px);
+  transform: translateY(100%);
+  transition: transform var(--t-slow) cubic-bezier(0.34,1.2,0.64,1);
+  max-height: 86vh; overflow-y: auto;
+  border-top: 1px solid var(--border-gold);
+}
+#settingsPanel.show .settings-sheet { transform: translateY(0); }
+.settings-handle {
+  width: 36px; height: 4px; background: rgba(128,128,128,0.3);
+  border-radius: 2px; margin: 0 auto 22px;
+}
+.settings-title { font-family: 'Noto Serif SC', serif; font-size: 20px; color: var(--gold-light); margin-bottom: 22px; letter-spacing: 1px; }
+:root[data-theme="light"] .settings-title { color: var(--gold-mid); }
+.settings-section { margin-bottom: 24px; }
+.settings-section-title { font-size: 11px; color: var(--text-3); letter-spacing: 2px; margin-bottom: 12px; text-transform: uppercase; }
+.settings-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; background: var(--bg-surface); border-radius: var(--r-sm);
+  margin-bottom: 8px; cursor: pointer;
+  transition: background var(--t-fast); border: 1px solid var(--border-dim);
+}
+.settings-row:active { background: var(--bg-elevated); }
+.settings-row-left { display: flex; align-items: center; gap: 12px; }
+.settings-row-icon { width: 36px; height: 36px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.settings-row-info h4 { font-size: 14px; color: var(--text-1); margin-bottom: 2px; }
+.settings-row-info p { font-size: 12px; color: var(--text-3); }
+.settings-row-arrow { color: var(--text-4); font-size: 13px; }
+:root[data-theme="light"] .settings-row-arrow { color: var(--text-3); }
+
+.data-info-bar {
+  background: rgba(240,192,64,0.06); border: 1px solid var(--border-gold);
+  border-radius: var(--r-sm); padding: 12px 14px; margin-bottom: 10px;
+  font-size: 13px; color: var(--text-2); line-height: 1.8;
+}
+:root[data-theme="light"] .data-info-bar { background: rgba(200,138,0,0.04); }
+
+.storage-note { font-size: 11px; color: var(--text-4); margin-top: 6px; padding: 0 4px; line-height: 1.6; }
+:root[data-theme="light"] .storage-note { color: var(--text-3); }
+
+/* Theme switcher */
+.theme-switcher { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.theme-pill {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; padding: 14px 8px; border-radius: var(--r-md);
+  background: var(--bg-surface); border: 2px solid var(--border-dim);
+  cursor: pointer; font-size: 13px; color: var(--text-2);
+  font-family: inherit; font-weight: 500;
+  transition: all var(--t-fast) var(--ease);
+}
+.theme-pill small { font-size: 10px; color: var(--text-3); font-weight: 400; letter-spacing: 0.3px; }
+.theme-pill.active { border-color: var(--gold-mid); background: var(--gold-glow); color: var(--gold-light); }
+:root[data-theme="light"] .theme-pill.active { color: var(--gold-mid); }
+.theme-pill:active { transform: scale(0.97); }
+
+/* Sync row */
+.sync-row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.sync-info { font-size: 12px; color: var(--text-3); }
+.sync-btn-sm {
+  padding: 7px 14px; border-radius: var(--r-full);
+  background: rgba(201,149,42,0.1); border: 1px solid var(--border-gold);
+  color: var(--gold-mid); font-family: inherit; font-size: 12px;
+  cursor: pointer; transition: background var(--t-fast);
+  display: flex; align-items: center; gap: 5px;
+}
+.sync-btn-sm:active { background: rgba(201,149,42,0.22); }
+.sync-btn-sm i.spinning { animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* ============================================================
+   MODAL (Detail / Edit)
+   ============================================================ */
+.modal-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  z-index: 500; display: flex; align-items: flex-end;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--t-base) var(--ease);
+}
+:root[data-theme="light"] .modal-overlay { background: rgba(0,0,0,0.25); }
+.modal-overlay.show { opacity: 1; pointer-events: all; }
+.modal-sheet {
+  width: 100%; background: var(--bg-card);
+  border-radius: 28px 28px 0 0;
+  padding: 20px 20px calc(env(safe-area-inset-bottom, 0px) + 32px);
+  transform: translateY(100%);
+  transition: transform var(--t-slow) cubic-bezier(0.34,1.2,0.64,1);
+  max-height: 90vh; overflow-y: auto;
+  border-top: 1px solid var(--border-gold);
+}
+.modal-overlay.show .modal-sheet { transform: translateY(0); }
+.modal-handle { width: 36px; height: 4px; background: rgba(128,128,128,0.3); border-radius: 2px; margin: 0 auto 20px; }
+
+.detail-section { margin-bottom: 16px; }
+.detail-section-title { font-size: 11px; color: var(--text-3); letter-spacing: 1.5px; margin-bottom: 8px; text-transform: uppercase; }
+.detail-body { font-size: 15px; color: var(--text-h); line-height: 1.8; }
+:root[data-theme="light"] .detail-body { color: var(--text-1); }
+.detail-content { font-size: 14px; color: var(--text-2); line-height: 1.8; }
+.detail-meta-row { display: flex; gap: 20px; flex-wrap: wrap; background: var(--bg-surface); border-radius: var(--r-sm); padding: 12px 14px; margin-bottom: 16px; }
+.detail-meta-item dt { font-size: 10px; color: var(--text-3); letter-spacing: 1px; margin-bottom: 4px; }
+.detail-meta-item dd { font-size: 13px; color: var(--text-2); }
+.detail-actions { display: flex; gap: 8px; margin-top: 18px; }
+
+/* Buttons */
+.btn-ghost {
+  flex: 1; padding: 12px;
+  border-radius: var(--r-sm); border: 1.5px solid var(--border-gold-strong);
+  background: transparent; color: var(--gold-mid);
+  font-size: 13px; font-family: inherit; cursor: pointer;
+  transition: all var(--t-fast); text-align: center; font-weight: 500;
+}
+.btn-ghost:active { background: rgba(201,149,42,0.1); }
+.btn-edit {
+  flex: 1; padding: 12px;
+  border-radius: var(--r-sm); border: 1.5px solid rgba(36,113,163,0.4);
+  background: rgba(36,113,163,0.07); color: var(--blue);
+  font-size: 13px; font-family: inherit; cursor: pointer;
+  transition: all var(--t-fast); text-align: center; font-weight: 500;
+}
+:root[data-theme="light"] .btn-edit { border-color: rgba(0,122,255,0.3); background: rgba(0,122,255,0.06); color: var(--blue); }
+.btn-edit:active { background: rgba(36,113,163,0.15); }
+.btn-danger {
+  flex: 1; padding: 12px;
+  border-radius: var(--r-sm); border: 1.5px solid rgba(192,57,43,0.3);
+  background: rgba(192,57,43,0.07); color: var(--red);
+  font-size: 13px; font-family: inherit; cursor: pointer;
+  transition: all var(--t-fast); text-align: center; font-weight: 500;
+}
+:root[data-theme="light"] .btn-danger { border-color: rgba(255,59,48,0.3); background: rgba(255,59,48,0.06); color: var(--red); }
+.btn-danger:active { background: var(--red-dim); }
+
+/* Edit modal specific */
+.edit-section { margin-bottom: 16px; }
+.edit-label { font-size: 12px; color: var(--text-3); letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.edit-label i { color: var(--gold-mid); }
+.edit-save-btn {
+  width: 100%; padding: 14px;
+  background: linear-gradient(135deg, var(--gold-mid), var(--gold-light));
+  border: none; border-radius: var(--r-md); color: #1A0E04;
+  font-size: 15px; font-weight: 700; font-family: inherit;
+  cursor: pointer; letter-spacing: 0.5px;
+  box-shadow: var(--shadow-gold); margin-top: 8px;
+  transition: transform var(--t-fast);
+}
+.edit-save-btn:active { transform: scale(0.98); }
+.edit-cancel-btn {
+  width: 100%; padding: 12px; background: transparent;
+  border: 1px solid var(--border-gold); border-radius: var(--r-md);
+  color: var(--text-3); font-size: 14px; font-family: inherit;
+  cursor: pointer; margin-top: 8px;
+  transition: background var(--t-fast);
+}
+.edit-cancel-btn:active { background: var(--bg-surface); }
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+#toast {
+  position: absolute; bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px);
+  left: 50%; transform: translateX(-50%) translateY(10px);
+  background: rgba(30,22,9,0.92); color: var(--text-1);
+  border: 1px solid var(--border-gold);
+  padding: 10px 20px; border-radius: var(--r-full);
+  font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+  opacity: 0; transition: opacity 0.22s, transform 0.22s var(--ease);
+  z-index: 900; pointer-events: none; white-space: nowrap;
+  backdrop-filter: blur(10px); box-shadow: var(--shadow-md);
+}
+:root[data-theme="light"] #toast { background: rgba(255,255,255,0.96); color: var(--text-1); border-color: var(--border-gold); }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+#toast.warn { color: #F0A040; }
+#toast.err { color: #E74C3C; }
+
+/* ============================================================
+   PWA INSTALL BANNER
+   ============================================================ */
+#installBanner {
+  position: absolute; top: calc(var(--topbar-h) + 8px);
+  left: 12px; right: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold-strong);
+  border-radius: var(--r-md); padding: 12px 16px;
+  display: flex; align-items: center; gap: 12px;
+  z-index: 400; transform: translateY(-120%);
+  transition: transform 0.4s cubic-bezier(0.34,1.2,0.64,1), visibility 0s 0.4s;
+  box-shadow: var(--shadow-gold);
+  pointer-events: none; visibility: hidden;
+}
+#installBanner.show { transform: translateY(0); pointer-events: auto; visibility: visible; transition: transform 0.4s cubic-bezier(0.34,1.2,0.64,1), visibility 0s 0s; }
+.install-icon { font-size: 32px; flex-shrink: 0; }
+.install-info { flex: 1; }
+.install-info h4 { font-size: 14px; color: var(--text-1); margin-bottom: 3px; }
+.install-info p { font-size: 12px; color: var(--text-3); }
+.install-btn { padding: 8px 18px; background: linear-gradient(135deg, var(--gold-mid), var(--gold-light)); border: none; border-radius: var(--r-full); color: #1A0E04; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; }
+.install-close {
+  color: var(--text-4); cursor: pointer; font-size: 16px;
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border-radius: var(--r-full); flex-shrink: 0; border: none; background: transparent;
+  transition: background var(--t-fast); -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+}
+.install-close:active { background: var(--bg-surface); }
+:root[data-theme="light"] .install-close { color: var(--text-3); }
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-particles" id="splashParticles"></div>
+  <div class="splash-icon">⛰️</div>
+  <div class="splash-title">旧金山</div>
+  <div class="splash-en">OLD GOLD MOUNTAIN</div>
+  <div class="splash-tagline">从过去挖掘人生智慧<br>把遗憾变成财富</div>
+  <button class="splash-btn" onclick="startApp()">开始挖掘 ⛏️</button>
+</div>
+
+<!-- ONBOARDING -->
+<div id="onboarding" style="display:none">
+  <div class="onboard-slides" id="onboardSlides">
+    <div class="onboard-slide">
+      <div class="onboard-emoji">⛰️</div>
+      <div class="onboard-title">欢迎来到你的旧金山</div>
+      <div class="onboard-desc">每一段经历、每一次后悔，都是等待被挖掘的金矿。让我们一起，从过去提炼智慧。</div>
+    </div>
+    <div class="onboard-slide">
+      <div class="onboard-emoji">✍️</div>
+      <div class="onboard-title">记录你的金脉</div>
+      <div class="onboard-desc">三类宝藏：<br><br>🌿 <strong style="color:#2ECC71">经验矿脉</strong> — 宝贵的正面教训<br>💎 <strong style="color:#E74C3C">后悔矿石</strong> — 需要转化的遗憾<br>⭐ <strong style="color:#5DADE2">关键事件</strong> — 重要的人生节点<br>✅ <strong style="color:#6366F1">意义矿脉</strong> — 今天真正值得记住的事</div>
+    </div>
+    <div class="onboard-slide">
+      <div class="onboard-emoji">🔔</div>
+      <div class="onboard-title">智能复盘提醒</div>
+      <div class="onboard-desc">系统会在合适的时机，把你记录的智慧重新推送给你，帮你避免重蹈覆辙，持续成长。</div>
+    </div>
+    <div class="onboard-slide">
+      <div class="onboard-emoji">🛡️</div>
+      <div class="onboard-title">行为准则库</div>
+      <div class="onboard-desc">将你最重要的教训提炼为行为准则，置顶展示，让智慧真正指导日常行动。</div>
+    </div>
+  </div>
+  <div class="onboard-footer">
+    <div class="onboard-dots" id="onboardDots"></div>
+    <button class="onboard-next-btn" id="onboardNextBtn" onclick="nextOnboard()">下一步</button>
+    <div class="onboard-skip" onclick="finishOnboard()">跳过引导</div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="main" style="display:none">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-title" id="topbarTitle">⛰️ 旧金山</div>
+    <div class="topbar-actions">
+      <button class="topbar-btn" id="bellBtn" onclick="checkReminders()" title="复盘提醒">
+        <i class="fas fa-bell"></i>
+        <span class="badge" id="bellBadge"></span>
+      </button>
+      <button class="topbar-btn" onclick="openSettings()" title="设置 / 数据管理">
+        <i class="fas fa-ellipsis-v"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- HOME PAGE -->
+  <div class="page active" id="page-home">
+    <div class="home-hero">
+      <div class="home-greeting" id="homeGreeting">👋 今天也要挖掘智慧</div>
+      <div class="home-date" id="homeDate"></div>
+      <div class="streak-pill">
+        <i class="fas fa-fire"></i>
+        <span>连续记录 <strong id="streakCount">0</strong> 天</span>
+        <span>🏆</span>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card" onclick="switchPage('mine')">
+        <div class="stat-num" id="totalCount">0</div>
+        <div class="stat-label">📦 矿藏总量</div>
+      </div>
+      <div class="stat-card" onclick="switchPage('review')">
+        <div class="stat-num" id="reminderCount">0</div>
+        <div class="stat-label">🔔 待复盘</div>
+      </div>
+    </div>
+    <div id="homeHighFreqWarn"></div>
+    <div id="homeTodayReminder"></div>
+    <div id="dailyExperiencePush"></div>
+    <div id="meaningCheckinCard"></div>
+    <div class="section-title">⚡ 快速记录</div>
+    <div class="quick-row">
+      <div class="quick-btn experience" onclick="openAddWithType('experience')">
+        <i class="fas fa-seedling"></i><span>经验</span>
+      </div>
+      <div class="quick-btn regret" onclick="openAddWithType('regret')">
+        <i class="fas fa-heart-crack"></i><span>后悔</span>
+      </div>
+      <div class="quick-btn event" onclick="openAddWithType('event')">
+        <i class="fas fa-star"></i><span>事件</span>
+      </div>
+      <div class="quick-btn meaning" onclick="openAddWithType('meaning')">
+        <i class="fas fa-check-circle"></i><span>意义</span>
+      </div>
+    </div>
+    <div class="section-title">📋 最近记录</div>
+    <div id="recentList"></div>
+    <div style="height:8px"></div>
+  </div>
+
+  <!-- ADD PAGE -->
+  <div class="page" id="page-add">
+    <div class="add-inner">
+      <div class="add-hero">
+        <h2>⛏️ 挖掘新金矿</h2>
+        <p>记录你的经验、后悔与关键时刻</p>
+      </div>
+      <div class="form-group">
+        <div class="form-label"><i class="fas fa-layer-group"></i> 选择类型 <span class="req">*</span></div>
+        <div class="type-grid" style="grid-template-columns:repeat(4,1fr)">
+          <div class="type-opt" id="type-experience" onclick="selectType('experience')">
+            <i class="fas fa-seedling ico-exp"></i><span>经验矿脉</span>
+          </div>
+          <div class="type-opt" id="type-regret" onclick="selectType('regret')">
+            <i class="fas fa-heart-crack ico-reg"></i><span>后悔矿石</span>
+          </div>
+          <div class="type-opt" id="type-event" onclick="selectType('event')">
+            <i class="fas fa-star ico-evt"></i><span>关键事件</span>
+          </div>
+          <div class="type-opt" id="type-meaning" onclick="selectType('meaning')">
+            <i class="fas fa-check-circle ico-meaning"></i><span>意义矿脉</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label"><i class="fas fa-pen-nib"></i> 当时情境 <span class="req">*</span></div>
+        <textarea class="f-textarea" id="inputContent" placeholder="发生了什么？当时的场景、你的处境是..."></textarea>
+      </div>
+      <div class="form-group">
+        <div class="form-label"><i class="fas fa-heart"></i> 情绪状态</div>
+        <div class="emotion-grid" id="emotionGrid">
+          <div class="emo-btn" onclick="selectEmotion('😤','愤怒')">😤<span class="emo-label">愤怒</span></div>
+          <div class="emo-btn" onclick="selectEmotion('😢','悲伤')">😢<span class="emo-label">悲伤</span></div>
+          <div class="emo-btn" onclick="selectEmotion('😰','焦虑')">😰<span class="emo-label">焦虑</span></div>
+          <div class="emo-btn" onclick="selectEmotion('😊','平静')">😊<span class="emo-label">平静</span></div>
+          <div class="emo-btn" onclick="selectEmotion('😄','喜悦')">😄<span class="emo-label">喜悦</span></div>
+          <div class="emo-btn" onclick="selectEmotion('😔','后悔')">😔<span class="emo-label">后悔</span></div>
+          <div class="emo-btn" onclick="selectEmotion('😞','沮丧')">😞<span class="emo-label">沮丧</span></div>
+          <div class="emo-btn" onclick="selectEmotion('🤔','反思')">🤔<span class="emo-label">反思</span></div>
+          <div class="emo-btn" onclick="selectEmotion('💪','激励')">💪<span class="emo-label">激励</span></div>
+          <div class="emo-btn" onclick="selectEmotion('🙏','感恩')">🙏<span class="emo-label">感恩</span></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label"><i class="fas fa-lightbulb"></i> 核心教训 / 启发</div>
+        <textarea class="f-textarea" id="inputLesson" placeholder="这件事让我明白了... / 下次我会..."></textarea>
+      </div>
+      <div class="form-group">
+        <div class="form-label"><i class="fas fa-rocket"></i> 未来行动计划</div>
+        <input class="f-input" id="inputAction" type="text" placeholder="具体要做的改变是...">
+      </div>
+      <div class="form-group">
+        <div class="form-label"><i class="fas fa-tag"></i> 生活领域</div>
+        <select class="f-select" id="inputDomain">
+          <option value="">选择领域...</option>
+          <option value="career">💼 职业发展</option>
+          <option value="relationship">❤️ 人际关系</option>
+          <option value="health">🏃 健康生活</option>
+          <option value="finance">💰 财务决策</option>
+          <option value="family">🏠 家庭亲情</option>
+          <option value="study">📚 学习成长</option>
+          <option value="mindset">🧠 心理认知</option>
+          <option value="other">🌱 其他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <div class="form-label"><i class="fas fa-bell"></i> 复盘提醒</div>
+        <div class="reminder-grid">
+          <div class="rem-opt" data-days="7" onclick="selectReminder(7)"><div class="rem-days">7</div><div class="rem-label">天后提醒</div></div>
+          <div class="rem-opt sel" data-days="30" onclick="selectReminder(30)"><div class="rem-days">30</div><div class="rem-label">天后提醒</div></div>
+          <div class="rem-opt" data-days="90" onclick="selectReminder(90)"><div class="rem-days">90</div><div class="rem-label">天后提醒</div></div>
+          <div class="rem-opt" data-days="365" onclick="selectReminder(365)"><div class="rem-days">365</div><div class="rem-label">天后提醒</div></div>
+        </div>
+      </div>
+      <button class="submit-btn" id="submitBtn" onclick="submitRecord()">
+        <i class="fas fa-gem"></i> 存入矿藏库
+      </button>
+      <div style="height:20px"></div>
+    </div>
+  </div>
+
+  <!-- MINE PAGE -->
+  <div class="page" id="page-mine">
+    <div class="mine-sticky-wrap">
+      <div class="mine-toolbar-card">
+        <div class="mine-toolbar-top">
+          <div>
+            <div class="mine-toolbar-title">快速查阅</div>
+            <div class="mine-toolbar-meta" id="mineToolbarMeta">已按月份整理矿藏，后续记录再多也能快速跳转</div>
+          </div>
+          <div class="mine-toolbar-count" id="mineToolbarCount">0</div>
+        </div>
+        <div class="mine-toolbar-actions">
+          <select class="mine-select" id="mineMonthJump" onchange="jumpToMineMonth(this.value)">
+            <option value="">按月份跳转</option>
+          </select>
+          <button class="tertiary-btn" onclick="expandAllMineGroups()"><i class="fas fa-layer-group"></i> 展开全部</button>
+        </div>
+      </div>
+      <div class="filter-bar">
+        <div class="filter-chip active" onclick="setFilter('all',this)">全部</div>
+        <div class="filter-chip" onclick="setFilter('experience',this)">🌿 经验矿脉</div>
+        <div class="filter-chip" onclick="setFilter('regret',this)">💎 后悔矿石</div>
+        <div class="filter-chip" onclick="setFilter('event',this)">⭐ 关键事件</div>
+        <div class="filter-chip" onclick="setFilter('meaning',this)">✅ 意义矿脉</div>
+      </div>
+      <div class="search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="搜索金矿、教训、行动..." oninput="renderMineList()">
+      </div>
+    </div>
+    <div id="mineList"></div>
+    <button class="scroll-top-btn" id="mineScrollTopBtn" onclick="scrollMineToTop()" aria-label="回到顶部"><i class="fas fa-arrow-up"></i></button>
+  </div>
+
+  <!-- PRINCIPLES PAGE -->
+  <div class="page" id="page-principles">
+    <div class="principles-hero">
+      <h2>🛡️ 行为准则</h2>
+      <p id="principlesDate">从智慧中提炼行动纲领</p>
+    </div>
+    <div id="principlesHighFreqWarn"></div>
+    <div id="principlesContent"></div>
+  </div>
+
+  <!-- REVIEW PAGE -->
+  <div class="page" id="page-review">
+    <div class="review-hero">
+      <h2>🔮 今日复盘</h2>
+      <p id="reviewDate">与你过去的自己对话</p>
+    </div>
+    <div id="aiInsightContainer"></div>
+    <div class="section-title">📬 待复盘清单</div>
+    <div id="reviewList" style="padding:0 16px 16px"></div>
+  </div>
+
+  <!-- STATS PAGE -->
+  <div class="page" id="page-stats">
+    <div class="stats-hero">
+      <h2>📊 旧金山报告</h2>
+      <p>你的成长轨迹与模式洞察</p>
+    </div>
+    <div id="wisdomCard"></div>
+    <div class="chart-card">
+      <div class="chart-title"><i class="fas fa-chart-line"></i> 矿藏积累趋势（近14天）</div>
+      <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title"><i class="fas fa-chart-pie"></i> 矿藏类型分布</div>
+      <div class="chart-wrap" style="height:165px"><canvas id="typeChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title"><i class="fas fa-bars"></i> 生活领域分布</div>
+      <div class="chart-wrap"><canvas id="domainChart"></canvas></div>
+    </div>
+    <div class="section-title">🔍 核心数据</div>
+    <div style="padding:0 16px" id="patternList"></div>
+    <div style="height:20px"></div>
+  </div>
+
+  <!-- BOTTOM NAV: 首页 | 矿藏库 | + | 准则 | 复盘 -->
+  <div class="bottom-nav">
+    <div class="nav-item active" id="nav-home" onclick="switchPage('home')">
+      <i class="fas fa-home"></i><span>首页</span>
+    </div>
+    <div class="nav-item" id="nav-mine" onclick="switchPage('mine')">
+      <i class="fas fa-gem"></i><span>矿藏库</span>
+    </div>
+    <div class="nav-center-wrapper" onclick="switchPage('add')">
+      <div class="nav-center-btn"><i class="fas fa-plus"></i></div>
+      <span class="nav-center-label">记录</span>
+    </div>
+    <div class="nav-item" id="nav-principles" onclick="switchPage('principles')">
+      <i class="fas fa-shield-alt"></i><span>准则</span>
+    </div>
+    <div class="nav-item" id="nav-review" onclick="switchPage('review')">
+      <i class="fas fa-sync-alt"></i><span>复盘</span>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="detailModal" onclick="closeDetailOnBg(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div id="detailContent"></div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay" id="editModal" onclick="closeEditOnBg(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div id="editContent"></div>
+  </div>
+</div>
+
+<!-- SETTINGS PANEL -->
+<div id="settingsPanel" onclick="closeSettingsOnBg(event)">
+  <div class="settings-sheet">
+    <div class="settings-handle"></div>
+    <div class="settings-title">⚙️ 设置与数据</div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">📊 数据状态</div>
+      <div class="data-info-bar" id="dataInfoBar">正在加载...</div>
+      <div class="data-info-bar" id="storageModeBar" style="font-size:12px">正在检测存储状态...</div>
+      <div class="sync-row">
+        <span class="sync-info" id="lastSyncInfo">上次同步：从未</span>
+        <button class="sync-btn-sm" onclick="manualSync()">
+          <i class="fas fa-sync-alt" id="syncIcon"></i> 手动同步
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">🎨 外观主题</div>
+      <div class="theme-switcher">
+        <button class="theme-pill active" id="theme-dark-btn" onclick="setTheme('dark')">
+          ⛰️ 金矿深色
+          <small>原始经典风格</small>
+        </button>
+        <button class="theme-pill" id="theme-light-btn" onclick="setTheme('light')">
+          ☀️ Apple 白色
+          <small>轻盈明亮风格</small>
+        </button>
+      </div>
+      <div class="storage-note">主题设置会自动保存并包含在导出备份中。</div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">💾 数据管理</div>
+      <div class="settings-row" onclick="exportData()">
+        <div class="settings-row-left">
+          <div class="settings-row-icon" style="background:var(--green-dim)">📤</div>
+          <div class="settings-row-info">
+            <h4>导出数据</h4>
+            <p>下载 JSON 备份文件到本地</p>
+          </div>
+        </div>
+        <i class="fas fa-chevron-right settings-row-arrow"></i>
+      </div>
+      <div class="settings-row" onclick="triggerImport()">
+        <div class="settings-row-left">
+          <div class="settings-row-icon" style="background:var(--blue-dim)">📥</div>
+          <div class="settings-row-info">
+            <h4>导入数据</h4>
+            <p>从 JSON 文件恢复数据（会合并）</p>
+          </div>
+        </div>
+        <i class="fas fa-chevron-right settings-row-arrow"></i>
+      </div>
+      <div class="settings-row" onclick="switchPage('stats'); closeSettings()">
+        <div class="settings-row-left">
+          <div class="settings-row-icon" style="background:rgba(240,192,64,0.1)">📊</div>
+          <div class="settings-row-info">
+            <h4>查看报告</h4>
+            <p>数据统计与成长洞察</p>
+          </div>
+        </div>
+        <i class="fas fa-chevron-right settings-row-arrow"></i>
+      </div>
+      <div class="settings-row" onclick="clearAllData()">
+        <div class="settings-row-left">
+          <div class="settings-row-icon" style="background:var(--red-dim)">🗑️</div>
+          <div class="settings-row-info">
+            <h4>清空所有数据</h4>
+            <p>不可恢复，请先导出备份</p>
+          </div>
+        </div>
+        <i class="fas fa-chevron-right settings-row-arrow"></i>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">📱 PWA 安装</div>
+      <div class="settings-row" id="pwaInstallRow" onclick="triggerInstall()" style="display:none">
+        <div class="settings-row-left">
+          <div class="settings-row-icon" style="background:rgba(240,192,64,0.1)">📲</div>
+          <div class="settings-row-info">
+            <h4>安装到桌面</h4>
+            <p>像 App 一样使用旧金山</p>
+          </div>
+        </div>
+        <i class="fas fa-chevron-right settings-row-arrow"></i>
+      </div>
+      <div class="settings-row" id="pwaInstalledRow" style="display:none;cursor:default">
+        <div class="settings-row-left">
+          <div class="settings-row-icon" style="background:var(--green-dim)">✅</div>
+          <div class="settings-row-info">
+            <h4>已安装到桌面</h4>
+            <p>可在桌面直接打开旧金山</p>
+          </div>
+        </div>
+      </div>
+      <div class="data-info-bar" style="font-size:12px;margin-top:8px">
+        iOS 用户：点击 Safari 底部分享按钮 → "添加到主屏幕"即可安装。
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">ℹ️ 关于</div>
+      <div class="data-info-bar">
+        旧金山 · Old Gold Mountain<br>
+        版本 4.0 · 每日经验推送、意义矿脉打卡、矿藏库快速查阅<br>
+        <span style="color:var(--text-3)">从过去挖掘人生智慧，把遗憾变成财富</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HIDDEN FILE INPUT -->
+<input type="file" id="importInput" accept=".json" onchange="importData(event)" style="display:none">
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- PWA INSTALL BANNER -->
+<div id="installBanner">
+  <div class="install-icon">⛰️</div>
+  <div class="install-info">
+    <h4>添加到主屏幕</h4>
+    <p>随时随地挖掘人生智慧</p>
+  </div>
+  <button class="install-btn" onclick="triggerInstall()">安装</button>
+  <button class="install-close" onclick="dismissInstall()" aria-label="关闭"><i class="fas fa-times"></i></button>
+</div>
+
+<script>
+/* ============================================================
+   CONSTANTS & STATE
+   ============================================================ */
+const DB_KEY    = 'ogm_records_v2';
+const PREFS_KEY = 'ogm_prefs_v1';
+const SYNC_KEY  = 'ogm_sync_v1';
+const DRAFT_KEY = 'ogm_draft_v1';
+const APP_VERSION = '4.0';
+const STORAGE_DB_NAME = 'ogm_persistent_storage';
+const STORAGE_STORE_NAME = 'snapshots';
+const STORAGE_SNAPSHOT_KEY = 'latest';
+
+let currentType     = 'experience';
+let currentEmotion  = '';
+let currentEmoji    = '';
+let currentReminder = 30;
+let currentFilter   = 'all';
+let currentDetailId = null;
+let onboardIndex    = 0;
+const ONBOARD_TOTAL = 4;
+let trendChart = null, typeChart = null, domainChart = null;
+let deferredInstall = null;
+let stateSyncTimer  = null;
+let toastTimer      = null;
+let mineCollapseState = {};
+
+/* ============================================================
+   DATA LAYER (localStorage + IndexedDB mirror)
+   ============================================================ */
+function getRecords() {
+  try { return JSON.parse(localStorage.getItem(DB_KEY) || '[]'); }
+  catch { return []; }
+}
+function saveRecords(records) {
+  localStorage.setItem(DB_KEY, JSON.stringify(records));
+  updateSyncMeta();
+  scheduleStateSync();
+}
+function getPrefs() {
+  try { return JSON.parse(localStorage.getItem(PREFS_KEY) || '{}'); }
+  catch { return {}; }
+}
+function savePrefs(prefs) {
+  localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+  scheduleStateSync();
+}
+function getSyncMeta() {
+  try { return JSON.parse(localStorage.getItem(SYNC_KEY) || '{}'); }
+  catch { return {}; }
+}
+function updateSyncMeta() {
+  const meta = getSyncMeta();
+  meta.lastSync = new Date().toISOString();
+  meta.count = getRecords().length;
+  localStorage.setItem(SYNC_KEY, JSON.stringify(meta));
+}
+
+/* ============================================================
+   DRAFT AUTO-SAVE
+   ============================================================ */
+function getDraft() {
+  try { return JSON.parse(localStorage.getItem(DRAFT_KEY) || '{}'); }
+  catch { return {}; }
+}
+function saveDraft() {
+  const draft = {
+    type: currentType, emotion: currentEmotion, emoji: currentEmoji,
+    reminderDays: currentReminder,
+    content: document.getElementById('inputContent')?.value || '',
+    lesson:  document.getElementById('inputLesson')?.value  || '',
+    action:  document.getElementById('inputAction')?.value  || '',
+    domain:  document.getElementById('inputDomain')?.value  || '',
+    meaningContent: document.getElementById('meaningContent')?.value || '',
+    meaningLesson: document.getElementById('meaningLesson')?.value || '',
+    meaningDomain: document.getElementById('meaningDomain')?.value || ''
+  };
+  const hasContent = draft.content || draft.lesson || draft.action || draft.meaningContent || draft.meaningLesson;
+  if (hasContent) localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+  else localStorage.removeItem(DRAFT_KEY);
+}
+function clearDraft() { localStorage.removeItem(DRAFT_KEY); }
+function restoreDraft() {
+  const draft = getDraft();
+  if (!Object.keys(draft).length) return;
+  if (draft.type) selectType(draft.type);
+  if (draft.reminderDays) selectReminder(Number(draft.reminderDays));
+  if (draft.emoji && draft.emotion) selectEmotion(draft.emoji, draft.emotion);
+  if (draft.content) document.getElementById('inputContent').value = draft.content;
+  if (draft.lesson)  document.getElementById('inputLesson').value  = draft.lesson;
+  if (draft.action)  document.getElementById('inputAction').value  = draft.action;
+  if (draft.domain)  document.getElementById('inputDomain').value  = draft.domain;
+  if (draft.meaningContent && document.getElementById('meaningContent')) document.getElementById('meaningContent').value = draft.meaningContent;
+  if (draft.meaningLesson && document.getElementById('meaningLesson')) document.getElementById('meaningLesson').value = draft.meaningLesson;
+  if (draft.meaningDomain && document.getElementById('meaningDomain')) document.getElementById('meaningDomain').value = draft.meaningDomain;
+}
+function bindDraftAutoSave() {
+  ['inputContent','inputLesson','inputAction','inputDomain','meaningContent','meaningLesson','meaningDomain'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && !el.dataset.draftBound) {
+      el.addEventListener('input', saveDraft);
+      if (el.tagName === 'SELECT') el.addEventListener('change', saveDraft);
+      el.dataset.draftBound = '1';
+    }
+  });
+}
+
+/* ============================================================
+   INDEXED DB - PERSISTENT MIRROR
+   ============================================================ */
+function openPersistentDB() {
+  return new Promise((resolve, reject) => {
+    if (!('indexedDB' in window)) return resolve(null);
+    const req = indexedDB.open(STORAGE_DB_NAME, 1);
+    req.onupgradeneeded = () => {
+      const db = req.result;
+      if (!db.objectStoreNames.contains(STORAGE_STORE_NAME))
+        db.createObjectStore(STORAGE_STORE_NAME);
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror   = () => reject(req.error);
+  });
+}
+async function writeSnapshotToIndexedDB(snapshot) {
+  const db = await openPersistentDB();
+  if (!db) return;
+  await new Promise((resolve, reject) => {
+    const tx = db.transaction(STORAGE_STORE_NAME, 'readwrite');
+    tx.objectStore(STORAGE_STORE_NAME).put(snapshot, STORAGE_SNAPSHOT_KEY);
+    tx.oncomplete = () => resolve();
+    tx.onerror    = () => reject(tx.error);
+  });
+  db.close();
+}
+async function readSnapshotFromIndexedDB() {
+  const db = await openPersistentDB();
+  if (!db) return null;
+  const result = await new Promise((resolve, reject) => {
+    const tx = db.transaction(STORAGE_STORE_NAME, 'readonly');
+    const req = tx.objectStore(STORAGE_STORE_NAME).get(STORAGE_SNAPSHOT_KEY);
+    req.onsuccess = () => resolve(req.result || null);
+    req.onerror   = () => reject(req.error);
+  });
+  db.close();
+  return result;
+}
+function getStateSnapshot() {
+  return {
+    version: APP_VERSION,
+    exportedAt: new Date().toISOString(),
+    records: getRecords(),
+    prefs: getPrefs(),
+    syncMeta: getSyncMeta()
+  };
+}
+function scheduleStateSync() {
+  clearTimeout(stateSyncTimer);
+  stateSyncTimer = setTimeout(() => syncAllState(), 200);
+}
+async function syncAllState() {
+  try { await writeSnapshotToIndexedDB(getStateSnapshot()); }
+  catch (err) { console.warn('IDB mirror failed', err); }
+  updateStorageStatus();
+}
+async function restoreFromIndexedDBIfNeeded() {
+  const hasLS = [DB_KEY, PREFS_KEY].some(k => localStorage.getItem(k));
+  if (hasLS) return false;
+  try {
+    const snapshot = await readSnapshotFromIndexedDB();
+    if (!snapshot) return false;
+    localStorage.setItem(DB_KEY,    JSON.stringify(snapshot.records  || []));
+    localStorage.setItem(PREFS_KEY, JSON.stringify(snapshot.prefs    || {}));
+    localStorage.setItem(SYNC_KEY,  JSON.stringify(snapshot.syncMeta || {}));
+    return true;
+  } catch (err) { console.warn('IDB restore failed', err); return false; }
+}
+async function ensurePersistentStorage() {
+  if (!navigator.storage?.persist) return false;
+  try {
+    const already = await navigator.storage.persisted();
+    if (already) return true;
+    return await navigator.storage.persist();
+  } catch { return false; }
+}
+function updateStorageStatus() {
+  const bar = document.getElementById('storageModeBar');
+  if (!bar) return;
+  const hasIDB = 'indexedDB' in window;
+  const records = getRecords();
+  const kb = (new Blob([JSON.stringify(records)]).size / 1024).toFixed(1);
+  bar.innerHTML = (hasIDB
+    ? '✅ <strong>IndexedDB + localStorage</strong> 双重存储已启用'
+    : '⚠️ 仅 localStorage（建议定期导出备份）')
+    + '&nbsp;·&nbsp; 数据 ' + kb + ' KB';
+}
+
+/* ============================================================
+   EXPORT / IMPORT / SYNC
+   ============================================================ */
+function downloadBlob(blob, fileName) {
+  const url = URL.createObjectURL(blob);
+  const a   = document.createElement('a');
+  a.href = url; a.download = fileName;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+async function exportData() {
+  const payload = getStateSnapshot();
+  const date = new Date().toISOString().slice(0,10);
+  const fileName = '旧金山备份_' + date + '.json';
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  try {
+    const file = new File([blob], fileName, { type: 'application/json' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ title: '旧金山数据备份', text: '旧金山完整备份文件', files: [file] });
+      showToast('✅ 备份已调起分享');
+      return;
+    }
+  } catch (err) { if (err?.name !== 'AbortError') console.warn('share failed', err); }
+  downloadBlob(blob, fileName);
+  showToast('✅ 数据已导出！');
+  updateDataInfo();
+}
+function triggerImport() {
+  document.getElementById('importInput').value = '';
+  document.getElementById('importInput').click();
+}
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      const payload = JSON.parse(e.target.result);
+      let imported = [];
+      if (Array.isArray(payload)) imported = payload;
+      else if (payload.records && Array.isArray(payload.records)) {
+        imported = payload.records;
+        if (payload.prefs) {
+          const mergedPrefs = Object.assign({}, getPrefs(), payload.prefs);
+          mergedPrefs.onboardDone = true; // keep onboard done
+          const theme = mergedPrefs.theme;
+          savePrefs(mergedPrefs);
+          if (theme) applyThemeImmediate(theme);
+        }
+      } else throw new Error('格式不正确');
+      // Sanitize imported records
+      imported = imported.filter(r => r && typeof r === "object" && r.id && typeof r.content === "string");
+      imported.forEach(r => {
+        r.content = String(r.content || "").slice(0, 5000);
+        r.lesson  = String(r.lesson  || "").slice(0, 2000);
+        r.action  = String(r.action  || "").slice(0, 1000);
+        r.id      = safeId(String(r.id || "")) || genId("imp");
+        r.type    = ["experience","regret","event","meaning"].includes(r.type) ? r.type : "experience";
+        r.reviewed    = Boolean(r.reviewed);
+        r.pinned      = Boolean(r.pinned);
+        r.actionDone  = Boolean(r.actionDone);
+        r.reviewCount = Math.max(0, parseInt(r.reviewCount) || 0);
+        r.reflections = Array.isArray(r.reflections) ? r.reflections.filter(rf => rf && typeof rf.text === "string") : [];
+      });
+      const existing    = getRecords();
+      const existingIds = new Set(existing.map(r => r.id));
+      const newRecords  = imported.filter(r => !existingIds.has(r.id));
+      const merged      = [...newRecords, ...existing];
+      if (!confirm('发现 ' + newRecords.length + ' 条新记录，合并后共 ' + merged.length + ' 条。确认导入？')) return;
+      saveRecords(merged);
+      renderHomePage(); updateBellBadge(); updateDataInfo();
+      showToast('✅ 成功导入 ' + newRecords.length + ' 条新记录');
+    } catch (err) { showToast('导入失败：' + err.message, 'err'); }
+  };
+  reader.readAsText(file);
+}
+function manualSync() {
+  const icon = document.getElementById('syncIcon');
+  icon.classList.add('spinning');
+  setTimeout(() => {
+    try {
+      let records = getRecords();
+      const seen = new Set();
+      records = records.filter(r => { if (!r.id || seen.has(r.id)) return false; seen.add(r.id); return true; });
+      records = records.map(r => ({
+        ...r,
+        id:          safeId(String(r.id || '')) || genId('sync'),
+        type:        ['experience','regret','event','meaning'].includes(r.type) ? r.type : 'experience',
+        content:     r.content     || '',
+        reviewed:    r.reviewed    || false,
+        reviewCount: r.reviewCount || 0,
+        pinned:      r.pinned      || false,
+        actionDone:  r.actionDone  || false,
+        createdAt:   r.createdAt   || new Date().toISOString(),
+        updatedAt:   r.updatedAt   || r.createdAt || new Date().toISOString(),
+        reminderDate:r.reminderDate|| new Date(Date.now()+30*86400000).toISOString()
+      }));
+      saveRecords(records);
+      renderHomePage(); updateBellBadge(); updateDataInfo();
+      showToast('✅ 数据已同步整理！');
+    } catch { showToast('同步失败', 'err'); }
+    icon.classList.remove('spinning');
+    updateLastSyncInfo();
+  }, 900);
+}
+function clearAllData() {
+  if (!confirm('确定要清空所有数据吗？此操作无法恢复！\n建议先导出备份。')) return;
+  if (!confirm('最后确认：清空所有矿藏记录？')) return;
+  const prefs = getPrefs();
+  const keepPrefs = { theme: prefs.theme || "dark", onboardDone: true };
+  localStorage.removeItem(DB_KEY);
+  localStorage.removeItem(SYNC_KEY);
+  localStorage.removeItem(DRAFT_KEY);
+  localStorage.setItem(PREFS_KEY, JSON.stringify(keepPrefs));
+  renderHomePage(); renderMineList(); updateBellBadge(); updateDataInfo();
+  showToast('已清空所有数据', 'warn');
+}
+function updateDataInfo() {
+  const records = getRecords();
+  const bar = document.getElementById('dataInfoBar');
+  if (!bar) return;
+  const exp = records.filter(r => r.type === 'experience').length;
+  const reg = records.filter(r => r.type === 'regret').length;
+  const evt = records.filter(r => r.type === 'event').length;
+  const mea = records.filter(r => r.type === 'meaning').length;
+  const kb  = (new Blob([JSON.stringify(records)]).size / 1024).toFixed(1);
+  bar.innerHTML = '共 <strong style="color:var(--gold-light)">' + records.length + '</strong> 条记录'
+    + '&nbsp;·&nbsp;🌿' + exp + ' 💎' + reg + ' ⭐' + evt + ' ✅' + mea
+    + '&nbsp;·&nbsp; 占用 <strong>' + kb + ' KB</strong>';
+}
+function updateLastSyncInfo() {
+  const meta = getSyncMeta();
+  const el = document.getElementById('lastSyncInfo');
+  if (!el) return;
+  if (meta.lastSync) {
+    const d = new Date(meta.lastSync);
+    el.textContent = '上次同步：' + d.toLocaleDateString('zh-CN') + ' ' + d.toLocaleTimeString('zh-CN', {hour:'2-digit',minute:'2-digit'});
+  } else el.textContent = '上次同步：从未';
+}
+
+/* ============================================================
+   THEME
+   ============================================================ */
+function applyThemeImmediate(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const metaTC = document.getElementById('themeColorMeta');
+  if (metaTC) metaTC.setAttribute('content', theme === 'light' ? '#F2F2F7' : '#1A1208');
+  const darkBtn  = document.getElementById('theme-dark-btn');
+  const lightBtn = document.getElementById('theme-light-btn');
+  if (darkBtn)  darkBtn.classList.toggle('active',  theme === 'dark');
+  if (lightBtn) lightBtn.classList.toggle('active', theme === 'light');
+  if (trendChart || typeChart || domainChart) {
+    const records = getRecords();
+    renderTrendChart(records); renderTypeChart(records); renderDomainChart(records);
+  }
+}
+function setTheme(theme) {
+  applyThemeImmediate(theme);
+  const prefs = getPrefs();
+  prefs.theme = theme;
+  savePrefs(prefs);
+  showToast(theme === 'dark' ? '⛰️ 已切换至金矿深色' : '☀️ 已切换至 Apple 白色');
+}
+function loadTheme() {
+  const prefs = getPrefs();
+  applyThemeImmediate(prefs.theme || 'dark');
+}
+
+/* ============================================================
+   SETTINGS PANEL
+   ============================================================ */
+function openSettings() {
+  document.getElementById('settingsPanel').classList.add('show');
+  document.body.style.overflow = 'hidden';
+  updateDataInfo(); updateLastSyncInfo(); updatePwaInstallUI(); updateStorageStatus();
+}
+function closeSettings() {
+  document.getElementById('settingsPanel').classList.remove('show');
+  document.body.style.overflow = '';
+}
+function closeSettingsOnBg(e) { if (e.target === document.getElementById('settingsPanel')) closeSettings(); }
+
+/* ============================================================
+   PWA INSTALL
+   ============================================================ */
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault(); deferredInstall = e;
+  setTimeout(() => { document.getElementById('installBanner').classList.add('show'); }, 3000);
+  updatePwaInstallUI();
+});
+window.addEventListener('appinstalled', () => {
+  deferredInstall = null;
+  document.getElementById('installBanner').classList.remove('show');
+  updatePwaInstallUI(); showToast('🎉 旧金山已安装到桌面！');
+});
+function triggerInstall() {
+  if (deferredInstall) {
+    deferredInstall.prompt();
+    deferredInstall.userChoice.then((res) => {
+      if (res.outcome === 'accepted') { deferredInstall = null; }
+      document.getElementById('installBanner').classList.remove('show');
+      updatePwaInstallUI();
+    }).catch(() => {
+      document.getElementById('installBanner').classList.remove('show');
+    });
+  } else {
+    dismissInstall();
+  }
+}
+function dismissInstall() { document.getElementById('installBanner').classList.remove('show'); }
+function updatePwaInstallUI() {
+  const ir = document.getElementById('pwaInstallRow');
+  const id = document.getElementById('pwaInstalledRow');
+  if (!ir || !id) return;
+  const isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  ir.style.display = (!isInstalled && deferredInstall) ? 'flex' : 'none';
+  id.style.display = isInstalled ? 'flex' : 'none';
+}
+
+/* ============================================================
+   SPLASH & ONBOARDING
+   ============================================================ */
+function createParticles() {
+  const container = document.getElementById('splashParticles');
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 2 + Math.random() * 3;
+    p.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (Math.random()*50+50) + '%;width:' + size + 'px;height:' + size + 'px;--dur:' + (2+Math.random()*3.5) + 's;--delay:' + (Math.random()*5) + 's;';
+    container.appendChild(p);
+  }
+}
+async function startApp() {
+  await restoreFromIndexedDBIfNeeded();
+  initSampleData();
+  const prefs = getPrefs();
+  document.getElementById('splash').classList.add('hide');
+  setTimeout(() => {
+    document.getElementById('splash').style.display = 'none';
+    if (!prefs.onboardDone) showOnboarding();
+    else showMainApp();
+  }, 900);
+}
+function showOnboarding() {
+  const ob = document.getElementById('onboarding');
+  ob.style.display = 'flex';
+  renderOnboardDots(); updateOnboardBtn();
+}
+function renderOnboardDots() {
+  const dots = document.getElementById('onboardDots');
+  dots.innerHTML = '';
+  for (let i = 0; i < ONBOARD_TOTAL; i++) {
+    const d = document.createElement('div');
+    d.className = 'onboard-dot' + (i === onboardIndex ? ' active' : '');
+    dots.appendChild(d);
+  }
+}
+function updateOnboardBtn() {
+  document.getElementById('onboardNextBtn').textContent =
+    onboardIndex === ONBOARD_TOTAL - 1 ? '开始挖掘金矿 ⛏️' : '下一步 →';
+}
+function nextOnboard() {
+  if (onboardIndex < ONBOARD_TOTAL - 1) {
+    onboardIndex++;
+    document.getElementById('onboardSlides').style.transform = 'translateX(-' + (onboardIndex * 100) + '%)';
+    renderOnboardDots(); updateOnboardBtn();
+  } else { finishOnboard(); }
+}
+function finishOnboard() {
+  const prefs = getPrefs();
+  prefs.onboardDone = true; savePrefs(prefs);
+  const ob = document.getElementById('onboarding');
+  ob.classList.add('hide');
+  setTimeout(() => { ob.style.display = 'none'; showMainApp(); }, 500);
+}
+
+/* ============================================================
+   MAIN APP INIT
+   ============================================================ */
+function showMainApp() {
+  document.getElementById('main').style.display = 'flex';
+  initHomeDate(); renderHomePage(); updateBellBadge();
+  registerServiceWorker(); injectPWAManifest();
+  bindDraftAutoSave();
+  restoreDraft();
+  bindMineScroll();
+  ensurePersistentStorage();
+  scheduleStateSync();
+}
+function initHomeDate() {
+  const now  = new Date();
+  const days = ['日','一','二','三','四','五','六'];
+  const h    = now.getHours();
+  const greeting = h < 5 ? '🌙 深夜挖掘' : h < 9 ? '🌅 清晨智慧' : h < 18 ? '☀️ 今天也要挖掘' : h < 21 ? '🌇 傍晚反思' : '🌃 夜间复盘';
+  document.getElementById('homeGreeting').textContent = greeting;
+  document.getElementById('homeDate').textContent = now.getFullYear() + '年' + (now.getMonth()+1) + '月' + now.getDate() + '日 · 周' + days[now.getDay()];
+  const rd = document.getElementById('reviewDate');
+  if (rd) rd.textContent = (now.getMonth()+1) + '月' + now.getDate() + '日 · 与过去的自己对话';
+  const pd = document.getElementById('principlesDate');
+  if (pd) pd.textContent = (now.getMonth()+1) + '月' + now.getDate() + '日 · 以智慧指导行动';
+}
+
+/* ============================================================
+   PAGE NAVIGATION
+   ============================================================ */
+function switchPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const pg = document.getElementById('page-' + name);
+  if (pg) pg.classList.add('active');
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  const titles = { home:'⛰️ 旧金山', add:'⛏️ 挖掘新金矿', mine:'💎 矿藏库', principles:'🛡️ 行为准则', review:'🔮 今日复盘', stats:'📊 旧金山报告' };
+  document.getElementById('topbarTitle').textContent = titles[name] || '旧金山';
+  if (name === 'mine')       { renderMineList(); updateMineBackToTop(); }
+  if (name === 'review')     renderReviewPage();
+  if (name === 'stats')      renderStatsPage();
+  if (name === 'home')       renderHomePage();
+  if (name === 'principles') renderPrinciplesPage();
+  if (name === 'add') { restoreDraft(); }
+}
+
+/* ============================================================
+   FORM STATE
+   ============================================================ */
+function openAddWithType(type) { selectType(type); switchPage('add'); }
+function selectType(type) {
+  currentType = type;
+  ['experience','regret','event','meaning'].forEach(t => {
+    const el = document.getElementById('type-' + t);
+    if (el) { el.className = 'type-opt'; if (t === type) el.classList.add('sel-' + t); }
+  });
+}
+function selectEmotion(emoji, label) {
+  currentEmoji = emoji; currentEmotion = label;
+  document.querySelectorAll('.emo-btn').forEach(btn => {
+    btn.classList.toggle('sel',
+      btn.textContent.trim().startsWith(emoji) || btn.querySelector('.emo-label')?.textContent === label
+    );
+  });
+}
+function selectReminder(days) {
+  currentReminder = days;
+  document.querySelectorAll('.rem-opt').forEach(opt => opt.classList.toggle('sel', Number(opt.dataset.days) === days));
+}
+
+/* ============================================================
+   SUBMIT RECORD
+   ============================================================ */
+function submitRecord() {
+  const content = document.getElementById('inputContent').value.trim().slice(0, 5000);
+  if (!content) { showToast('请填写当时的情境描述', 'err'); return; }
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  const now = new Date();
+  const record = {
+    id:           genId('rec'),
+    type:         currentType,
+    content,
+    lesson:       document.getElementById('inputLesson').value.trim().slice(0, 2000),
+    action:       document.getElementById('inputAction').value.trim().slice(0, 1000),
+    emotion:      currentEmotion,
+    emoji:        currentEmoji,
+    domain:       document.getElementById('inputDomain').value,
+    reminderDays: currentReminder,
+    reminderDate: new Date(now.getTime() + currentReminder * 86400000).toISOString(),
+    reviewed:     false,
+    reviewCount:  0,
+    pinned:       false,
+    actionDone:   false,
+    reflections:  [],
+    createdAt:    now.toISOString(),
+    updatedAt:    now.toISOString()
+  };
+  const records = getRecords();
+  records.unshift(record);
+  saveRecords(records);
+  updateStreak(); clearDraft();
+  ['inputContent','inputLesson','inputAction'].forEach(id => { document.getElementById(id).value = ''; });
+  document.getElementById('inputDomain').value = '';
+  currentEmotion = ''; currentEmoji = '';
+  document.querySelectorAll('.emo-btn').forEach(b => b.classList.remove('sel'));
+  selectReminder(30); selectType('experience');
+  showToast('✨ 成功存入矿藏库！');
+  updateBellBadge();
+  setTimeout(() => { btn.disabled = false; switchPage('home'); }, 700);
+}
+function updateStreak() {
+  const prefs = getPrefs();
+  const today = new Date().toDateString();
+  if (prefs.lastRecordDate === today) return;
+  const yesterday = new Date(Date.now() - 86400000).toDateString();
+  prefs.streak = (prefs.lastRecordDate === yesterday) ? (prefs.streak || 0) + 1 : 1;
+  prefs.lastRecordDate = today;
+  savePrefs(prefs);
+}
+
+/* ============================================================
+   HIGH FREQ WARNING UTIL
+   ============================================================ */
+const TYPE_NAMES = { experience:'经验矿脉', regret:'后悔矿石', event:'关键事件', meaning:'意义矿脉' };
+const TYPE_ICONS = { experience:'fa-seedling', regret:'fa-heart-crack', event:'fa-star', meaning:'fa-check-circle' };
+const DAILY_EXPERIENCE_LIBRARY = [
+  { content:'每周固定留出一段不被打扰的时间，先处理最重要但最容易被拖延的事。', lesson:'真正改变人生的，往往不是紧急事务，而是长期重要事务的持续推进。', action:'每周提前预留一段深度专注时间，不被消息与琐事切碎。', domain:'career', emotion:'激励', emoji:'💪' },
+  { content:'在情绪上头时先延迟表达，等身体和语言都降温后再处理关系问题。', lesson:'关系里的高质量回应，几乎都来自冷静，而不是第一反应。', action:'遇到冲突先暂停10分钟，再决定要不要继续沟通。', domain:'relationship', emotion:'平静', emoji:'😊' },
+  { content:'把“今天必须做到的最小行动”定义得足够小，反而更容易长期坚持。', lesson:'稳定的小步前进，比偶尔的爆发更能带来复利。', action:'给每个长期目标都定义一个2分钟起步动作。', domain:'study', emotion:'激励', emoji:'💪' },
+  { content:'给重要决定写下三条支持理由和三条反对理由，再做选择。', lesson:'把直觉外显成文字，能显著降低冲动决策和事后后悔。', action:'重大决定前固定使用“3+3 决策卡片”。', domain:'mindset', emotion:'反思', emoji:'🤔' },
+  { content:'收入增加时，先提高储蓄率而不是立刻提高生活成本。', lesson:'能留下来的钱，才真正构成未来的安全感和选择权。', action:'每次收入变化时先调整自动储蓄比例。', domain:'finance', emotion:'平静', emoji:'😊' },
+  { content:'身体不舒服时别硬扛，越早休息和干预，恢复成本越低。', lesson:'健康问题最怕拖延，小问题积累后往往比事情本身更消耗。', action:'出现连续两天的不适时主动休息并记录诱因。', domain:'health', emotion:'感恩', emoji:'🙏' },
+  { content:'把家人真正关心的事记下来，重要节点主动询问和回应。', lesson:'亲密关系里的被看见感，常常来自那些被记住的小细节。', action:'为家人建立一个轻量提醒清单，记录关键日期与近况。', domain:'family', emotion:'感恩', emoji:'🙏' },
+  { content:'完成一件值得高兴的小事后，立即写一句“为什么它重要”。', lesson:'被及时命名的正向体验，更容易沉淀成稳定的自我认同。', action:'每次完成阶段成果后补上一句意义总结。', domain:'mindset', emotion:'喜悦', emoji:'😄' },
+  { content:'工作推进不顺时，先拆成“下一步可执行动作”，不要只盯着最终结果。', lesson:'模糊会制造拖延，清晰的下一步才能重新启动行动。', action:'卡住时只问自己：下一步能在15分钟内做什么？', domain:'career', emotion:'反思', emoji:'🤔' },
+  { content:'和重要的人相处时，少给建议，多先确认对方真正需要的是理解还是方案。', lesson:'不是所有问题都需要立刻解决，有时被理解本身就是帮助。', action:'沟通前先问：你现在更想被听见，还是一起想办法？', domain:'relationship', emotion:'平静', emoji:'😊' },
+  { content:'把学到的新知识尽快讲给别人听，理解会在表达时变得更扎实。', lesson:'输出不是学习的最后一步，而是检验是否真正学会的核心环节。', action:'每周至少做一次3分钟复述或分享。', domain:'study', emotion:'激励', emoji:'💪' },
+  { content:'睡前别只看今天没完成什么，也记录一件今天已经做对的事。', lesson:'长期成长需要校正，也需要鼓励；只盯缺口会削弱行动感。', action:'每晚写下一条“今天做得不错”的记录。', domain:'mindset', emotion:'感恩', emoji:'🙏' }
+];
+const DOMAIN_NAMES = { career:'职业发展', relationship:'人际关系', health:'健康生活', finance:'财务决策', family:'家庭亲情', study:'学习成长', mindset:'心理认知', other:'其他' };
+function getHighFreqWarnings(records) {
+  const regrets = records.filter(r => r.type === 'regret');
+  const cnt = {};
+  regrets.forEach(r => { if (r.domain) cnt[r.domain] = (cnt[r.domain]||0)+1; });
+  return Object.entries(cnt).filter(([, v]) => v >= 3).sort((a,b) => b[1]-a[1]);
+}
+function renderHighFreqWarn(containerId, records) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const warnings = getHighFreqWarnings(records);
+  if (!warnings.length) { el.innerHTML = ''; return; }
+  const items = warnings.map(([d, c]) => '<strong>' + (DOMAIN_NAMES[d]||d) + '</strong>（' + c + '次）').join('、');
+  el.innerHTML = '<div class="warn-card"><div class="warn-card-title"><i class="fas fa-exclamation-triangle"></i> 高频遗憾警示</div><div class="warn-card-body">你在 ' + items + ' 领域已有多次后悔记录。建议在"行为准则"中固化对应的应对策略。</div></div>';
+}
+
+/* ============================================================
+   HOME PAGE
+   ============================================================ */
+function renderHomePage() {
+  const records = getRecords();
+  const prefs   = getPrefs();
+  document.getElementById('totalCount').textContent    = records.length;
+  document.getElementById('streakCount').textContent   = prefs.streak || 0;
+  document.getElementById('reminderCount').textContent = getDueRecords(records).length;
+  renderHighFreqWarn('homeHighFreqWarn', records);
+  renderHomeTodayReminder(records);
+  renderDailyExperiencePush(records);
+  renderMeaningCheckinCard();
+  bindDraftAutoSave();
+  const container = document.getElementById('recentList');
+  const recent    = records.slice(0, 5);
+  container.innerHTML = recent.length === 0
+    ? '<div class="empty-state"><div class="empty-icon">🏔️</div><h3>金山还未开采</h3><p>点击下方 + 按钮<br>开始记录你的第一条金矿</p></div>'
+    : recent.map(r => renderRecordCard(r)).join('');
+}
+function getDueRecords(records) {
+  const now = new Date();
+  return records.filter(r => !r.reviewed && new Date(r.reminderDate) <= now);
+}
+function renderHomeTodayReminder(records) {
+  const container = document.getElementById('homeTodayReminder');
+  const due = getDueRecords(records);
+  if (due.length === 0) { container.innerHTML = ''; return; }
+  const r = due[0];
+  const typeNames = TYPE_NAMES;
+  const daysAgo = Math.floor((Date.now() - new Date(r.createdAt)) / 86400000);
+  container.innerHTML = '<div class="reminder-card" onclick="switchPage(\'review\')">'
+    + '<div class="reminder-chip"><i class="fas fa-bell"></i> 复盘提醒 · ' + due.length + ' 条待复盘</div>'
+    + '<div class="reminder-quote">&ldquo;' + esc(r.content.length > 65 ? r.content.substr(0,65)+'…' : r.content) + '&rdquo;</div>'
+    + '<div class="reminder-meta">' + daysAgo + ' 天前记录的 ' + typeNames[r.type] + ' · 点击开始复盘 →</div>'
+    + '</div>';
+}
+
+/* ============================================================
+   RECORD CARD RENDERER (with swipe-to-delete on mobile)
+   ============================================================ */
+function renderRecordCard(r, showDeleteBtn) {
+  const typeNames  = TYPE_NAMES;
+  const typeIcons  = TYPE_ICONS;
+  const domainMap  = { career:'💼职业', relationship:'❤️人际', health:'🏃健康', finance:'💰财务', family:'🏠家庭', study:'📚学习', mindset:'🧠心理', other:'🌱其他' };
+  const daysAgo    = Math.floor((Date.now() - new Date(r.createdAt)) / 86400000);
+  const timeStr    = daysAgo === 0 ? '今天' : daysAgo === 1 ? '昨天' : daysAgo + '天前';
+  const preview    = r.content.length > 85 ? r.content.substr(0,85)+'…' : r.content;
+  const lessonPrev = r.lesson ? (r.lesson.length > 65 ? r.lesson.substr(0,65)+'…' : r.lesson) : '';
+  const deleteBtn  = showDeleteBtn
+    ? '<button class="btn-danger" style="flex:none;padding:8px 14px;font-size:12px" onclick="event.stopPropagation();deleteRecord(\'' + r.id + '\')"><i class="fas fa-trash"></i></button>'
+    : '';
+  return '<div class="record-card ' + r.type + '" onclick="openDetail(\'' + r.id + '\')">'
+    + '<div class="record-head">'
+    + '<span class="badge-type ' + r.type + '"><i class="fas ' + typeIcons[r.type] + '"></i> ' + typeNames[r.type] + '</span>'
+    + '<div style="display:flex;align-items:center;gap:8px">'
+    + '<span class="record-date">' + timeStr + '</span>'
+    + deleteBtn
+    + '</div>'
+    + '</div>'
+    + '<div class="record-body">' + esc(preview) + '</div>'
+    + (lessonPrev ? '<div class="record-lesson">' + esc(lessonPrev) + '</div>' : '')
+    + '<div class="record-footer">'
+    + (r.emoji ? '<span class="chip">' + r.emoji + ' ' + r.emotion + '</span>' : '')
+    + (r.domain ? '<span class="chip">' + (domainMap[r.domain]||r.domain) + '</span>' : '')
+    + (r.pinned ? '<span class="chip" style="color:var(--gold-mid);border-color:rgba(201,149,42,0.3)">📌 已置顶</span>' : '')
+    + (r.reviewed ? '<span class="chip" style="color:#2ECC71;border-color:rgba(39,174,96,0.3)">✓ 已复盘</span>' : '')
+    + '</div>'
+    + '</div>';
+}
+
+/* ============================================================
+   MINE PAGE
+   ============================================================ */
+function setFilter(type, el) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderMineList();
+}
+function renderMineList() {
+  const container = document.getElementById('mineList');
+  if (!container) return;
+  const records = getRecords();
+  const q = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+  let filtered = currentFilter !== 'all' ? records.filter(r => r.type === currentFilter) : records;
+  if (q) filtered = filtered.filter(r =>
+    r.content.toLowerCase().includes(q) ||
+    (r.lesson && r.lesson.toLowerCase().includes(q)) ||
+    (r.action && r.action.toLowerCase().includes(q))
+  );
+  updateMineToolbar(filtered, q);
+  updateMineMonthJump(filtered);
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">🔍</div><h3>暂无记录</h3><p>' + (q ? '没有匹配"'+esc(q)+'"的记录' : '还没有该类型的矿藏') + '</p></div>';
+    updateMineBackToTop();
+    return;
+  }
+  const groups = {};
+  filtered.forEach(r => {
+    const key = getMonthKey(r.createdAt);
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(r);
+  });
+  const monthKeys = Object.keys(groups).sort((a, b) => b.localeCompare(a));
+  container.innerHTML = monthKeys.map((key, idx) => {
+    if (mineCollapseState[key] === undefined) mineCollapseState[key] = idx > 0;
+    const collapsed = mineCollapseState[key];
+    return '<div class="month-group" id="month-' + key + '">'
+      + '<div class="month-group-card' + (collapsed ? ' collapsed' : '') + '">'
+      + '<button class="month-group-header" onclick="toggleMineMonth(\'' + key + '\')">'
+      + '<div><div class="month-group-title">' + formatMonthLabel(key) + '</div><div class="month-group-meta">' + groups[key].length + ' 条记录 · 点击' + (collapsed ? '展开' : '收起') + '</div></div>'
+      + '<i class="fas fa-chevron-down month-group-arrow"></i>'
+      + '</button>'
+      + '<div class="month-group-content">'
+      + groups[key].map(r => renderRecordCard(r, true)).join('')
+      + '</div></div></div>';
+  }).join('');
+  updateMineBackToTop();
+}
+
+/* ============================================================
+   DETAIL MODAL
+   ============================================================ */
+function openDetail(id) {
+  currentDetailId = id;
+  const r = getRecords().find(rec => rec.id === id);
+  if (!r) return;
+  const typeNames = TYPE_NAMES;
+  const typeIcons = TYPE_ICONS;
+  const domainMap = { career:'💼 职业发展', relationship:'❤️ 人际关系', health:'🏃 健康生活', finance:'💰 财务决策', family:'🏠 家庭亲情', study:'📚 学习成长', mindset:'🧠 心理认知', other:'🌱 其他' };
+  const created  = new Date(r.createdAt).toLocaleDateString('zh-CN');
+  const reminder = new Date(r.reminderDate).toLocaleDateString('zh-CN');
+  const reflHtml = r.reflections && r.reflections.length
+    ? r.reflections.map(rf => '<div style="background:var(--bg-surface);border-radius:6px;padding:8px 10px;margin-bottom:6px;font-size:13px;color:var(--text-2);border-left:2px solid var(--gold-mid)">' + esc(rf.text) + '<span style="display:block;font-size:10px;color:var(--text-3);margin-top:4px">' + new Date(rf.date).toLocaleDateString('zh-CN') + '</span></div>').join('')
+    : '';
+  document.getElementById('detailContent').innerHTML =
+    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">'
+    + '<span class="badge-type ' + r.type + '"><i class="fas ' + typeIcons[r.type] + '"></i> ' + typeNames[r.type] + '</span>'
+    + (r.emoji ? '<span style="font-size:22px">' + r.emoji + '</span><span style="font-size:12px;color:var(--text-2)">' + r.emotion + '</span>' : '')
+    + (r.reviewed ? '<span style="color:#2ECC71;font-size:12px;margin-left:auto">✓ 已复盘</span>' : '')
+    + '</div>'
+    + '<div class="detail-section"><div class="detail-section-title">当时情境</div><div class="detail-body">' + esc(r.content) + '</div></div>'
+    + (r.lesson ? '<div class="detail-section"><div class="detail-section-title">💡 核心教训</div><div class="detail-content">' + esc(r.lesson) + '</div></div>' : '')
+    + (r.action ? '<div class="detail-section"><div class="detail-section-title">🚀 行动计划' + (r.actionDone ? ' <span style="color:var(--green);font-size:11px">✓ 已完成</span>' : '') + '</div><div class="detail-content" style="' + (r.actionDone ? 'text-decoration:line-through;opacity:0.6' : '') + '">' + esc(r.action) + '</div></div>' : '')
+    + '<div class="detail-meta-row">'
+    + '<div class="detail-meta-item"><dt>记录时间</dt><dd>' + created + '</dd></div>'
+    + (r.domain ? '<div class="detail-meta-item"><dt>生活领域</dt><dd>' + (domainMap[r.domain]||r.domain) + '</dd></div>' : '')
+    + '<div class="detail-meta-item"><dt>复盘日期</dt><dd style="color:var(--gold-mid)">' + reminder + '</dd></div>'
+    + (r.reviewCount ? '<div class="detail-meta-item"><dt>复盘次数</dt><dd>' + r.reviewCount + '</dd></div>' : '')
+    + '</div>'
+    + (reflHtml ? '<div class="detail-section"><div class="detail-section-title">💬 历次想法</div>' + reflHtml + '</div>' : '')
+    + '<div class="detail-actions">'
+    + '<button class="btn-ghost" onclick="shareRecord(\'' + r.id + '\')"><i class="fas fa-share-alt"></i> 分享</button>'
+    + '<button class="btn-edit" onclick="openEdit(\'' + r.id + '\')"><i class="fas fa-edit"></i> 编辑</button>'
+    + '<button class="btn-danger" onclick="deleteRecord(\'' + r.id + '\')"><i class="fas fa-trash"></i> 删除</button>'
+    + '</div>';
+  document.getElementById('detailModal').classList.add('show');
+}
+function closeDetailOnBg(e) { if (e.target === document.getElementById('detailModal')) closeDetail(); }
+function closeDetail() { document.getElementById('detailModal').classList.remove('show'); }
+function deleteRecord(id) {
+  if (!confirm('确定要删除这条记录吗？')) return;
+  saveRecords(getRecords().filter(r => r.id !== id));
+  closeDetail(); renderMineList(); renderHomePage(); updateBellBadge();
+  showToast('已删除', 'warn');
+}
+function shareRecord(id) {
+  const r = getRecords().find(rec => rec.id === id);
+  if (!r) return;
+  const text = '【旧金山·人生智慧】\n\n' + r.content + (r.lesson ? '\n\n💡 ' + r.lesson : '') + '\n\n—— 旧金山 Old Gold Mountain';
+  if (navigator.share) navigator.share({ title: '旧金山·人生智慧', text });
+  else navigator.clipboard?.writeText(text).then(() => showToast('已复制到剪贴板 ✂️'));
+}
+
+/* ============================================================
+   EDIT MODAL
+   ============================================================ */
+function openEdit(id) {
+  const r = getRecords().find(rec => rec.id === id);
+  if (!r) return;
+  closeDetail();
+  const emotionBtns = [
+    ['😤','愤怒'],['😢','悲伤'],['😰','焦虑'],['😊','平静'],['😄','喜悦'],
+    ['😔','后悔'],['😞','沮丧'],['🤔','反思'],['💪','激励'],['🙏','感恩']
+  ].map(([em, lb]) => '<div class="emo-btn' + (r.emoji === em ? ' sel' : '') + '" onclick="editSelectEmotion(\'' + em + '\',\'' + lb + '\')">' + em + '<span class="emo-label">' + lb + '</span></div>').join('');
+
+  const reminderOpts = [7,30,90,365].map(d =>
+    '<div class="rem-opt' + (r.reminderDays === d ? ' sel' : '') + '" data-days="' + d + '" onclick="editSelectReminder(' + d + ')"><div class="rem-days">' + d + '</div><div class="rem-label">天后</div></div>'
+  ).join('');
+
+  document.getElementById('editContent').innerHTML =
+    '<div style="font-family:\'Noto Serif SC\',serif;font-size:18px;color:var(--gold-light);margin-bottom:18px">✏️ 编辑记录</div>'
+    + '<div class="edit-section">'
+    + '<div class="edit-label"><i class="fas fa-layer-group"></i> 类型</div>'
+    + '<div class="type-grid" style="grid-template-columns:repeat(4,1fr)">'
+    + '<div class="type-opt' + (r.type==='experience' ? ' sel-experience' : '') + '" id="edit-type-experience" onclick="editSelectType(\'experience\')"><i class="fas fa-seedling ico-exp"></i><span>经验矿脉</span></div>'
+    + '<div class="type-opt' + (r.type==='regret'     ? ' sel-regret'     : '') + '" id="edit-type-regret"     onclick="editSelectType(\'regret\')"><i class="fas fa-heart-crack ico-reg"></i><span>后悔矿石</span></div>'
+    + '<div class="type-opt' + (r.type==='event'      ? ' sel-event'      : '') + '" id="edit-type-event"      onclick="editSelectType(\'event\')"><i class="fas fa-star ico-evt"></i><span>关键事件</span></div>'
+    + '<div class="type-opt' + (r.type==='meaning'    ? ' sel-meaning'    : '') + '" id="edit-type-meaning"    onclick="editSelectType(\'meaning\')"><i class="fas fa-check-circle ico-meaning"></i><span>意义矿脉</span></div>'
+    + '</div></div>'
+    + '<div class="edit-section"><div class="edit-label"><i class="fas fa-pen-nib"></i> 当时情境</div><textarea class="f-textarea" id="edit-content" style="min-height:80px">' + esc(r.content) + '</textarea></div>'
+    + '<div class="edit-section"><div class="edit-label"><i class="fas fa-heart"></i> 情绪状态</div><div class="emotion-grid edit-emotion-grid">' + emotionBtns + '</div></div>'
+    + '<div class="edit-section"><div class="edit-label"><i class="fas fa-lightbulb"></i> 核心教训</div><textarea class="f-textarea" id="edit-lesson" style="min-height:70px">' + esc(r.lesson||'') + '</textarea></div>'
+    + '<div class="edit-section"><div class="edit-label"><i class="fas fa-rocket"></i> 行动计划</div><input class="f-input" id="edit-action" value="' + esc(r.action||'') + '"></div>'
+    + '<div class="edit-section"><div class="edit-label"><i class="fas fa-tag"></i> 生活领域</div>'
+    + '<select class="f-select" id="edit-domain">'
+    + '<option value="">选择领域...</option>'
+    + ['career','relationship','health','finance','family','study','mindset','other'].map(v => '<option value="' + v + '"' + (r.domain===v?' selected':'') + '>' + {career:'💼 职业发展',relationship:'❤️ 人际关系',health:'🏃 健康生活',finance:'💰 财务决策',family:'🏠 家庭亲情',study:'📚 学习成长',mindset:'🧠 心理认知',other:'🌱 其他'}[v] + '</option>').join('')
+    + '</select></div>'
+    + '<div class="edit-section"><div class="edit-label"><i class="fas fa-bell"></i> 复盘提醒</div><div class="reminder-grid">' + reminderOpts + '</div></div>'
+    + '<div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">'
+    + '<label style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-2);padding:12px 14px;background:var(--bg-surface);border-radius:var(--r-sm);cursor:pointer">'
+    + '<input type="checkbox" id="edit-pinned"' + (r.pinned?' checked':'') + ' style="width:16px;height:16px;accent-color:var(--gold-mid)"> 📌 置顶到行为准则</label>'
+    + '<label style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-2);padding:12px 14px;background:var(--bg-surface);border-radius:var(--r-sm);cursor:pointer">'
+    + '<input type="checkbox" id="edit-actionDone"' + (r.actionDone?' checked':'') + ' style="width:16px;height:16px;accent-color:var(--green)"> ✅ 标记行动计划已完成</label>'
+    + '</div>'
+    + '<button class="edit-save-btn" onclick="saveEdit(\'' + r.id + '\')"><i class="fas fa-save"></i> 保存更改</button>'
+    + '<button class="edit-cancel-btn" onclick="closeEdit()">取消</button>';
+
+  // store temp edit state
+  window._editType    = r.type;
+  window._editEmotion = r.emotion || '';
+  window._editEmoji   = r.emoji   || '';
+  window._editReminder = r.reminderDays || 30;
+
+  document.getElementById('editModal').classList.add('show');
+}
+function editSelectType(type) {
+  window._editType = type;
+  ['experience','regret','event','meaning'].forEach(t => {
+    const el = document.getElementById('edit-type-' + t);
+    if (el) { el.className = 'type-opt'; if (t === type) el.classList.add('sel-' + t); }
+  });
+}
+function editSelectEmotion(emoji, label) {
+  window._editEmoji = emoji; window._editEmotion = label;
+  document.querySelectorAll('.edit-emotion-grid .emo-btn').forEach(btn => {
+    btn.classList.toggle('sel', btn.textContent.trim().startsWith(emoji));
+  });
+}
+function editSelectReminder(days) {
+  window._editReminder = days;
+  document.querySelectorAll('#editContent .rem-opt').forEach(opt => opt.classList.toggle('sel', Number(opt.dataset.days) === days));
+}
+function saveEdit(id) {
+  const records = getRecords();
+  const idx = records.findIndex(r => r.id === id);
+  if (idx === -1) return;
+  const content = document.getElementById('edit-content').value.trim().slice(0, 5000);
+  if (!content) { showToast('情境描述不能为空', 'err'); return; }
+  const now = new Date();
+  records[idx] = {
+    ...records[idx],
+    type:         window._editType,
+    content,
+    lesson:       document.getElementById('edit-lesson').value.trim().slice(0, 2000),
+    action:       document.getElementById('edit-action').value.trim().slice(0, 1000),
+    emotion:      window._editEmotion,
+    emoji:        window._editEmoji,
+    domain:       document.getElementById('edit-domain').value,
+    reminderDays: window._editReminder,
+    reminderDate: new Date(new Date(records[idx].createdAt).getTime() + window._editReminder * 86400000).toISOString(),
+    pinned:       document.getElementById('edit-pinned').checked,
+    actionDone:   document.getElementById('edit-actionDone').checked,
+    updatedAt:    now.toISOString()
+  };
+  saveRecords(records);
+  closeEdit(); renderHomePage(); renderMineList(); updateBellBadge();
+  showToast('✅ 记录已更新');
+}
+function closeEdit() { document.getElementById('editModal').classList.remove('show'); }
+function closeEditOnBg(e) { if (e.target === document.getElementById('editModal')) closeEdit(); }
+
+/* ============================================================
+   PRINCIPLES PAGE
+   ============================================================ */
+function renderPrinciplesPage() {
+  const records = getRecords();
+  renderHighFreqWarn('principlesHighFreqWarn', records);
+  const container = document.getElementById('principlesContent');
+  if (records.length === 0) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">🛡️</div><h3>准则库尚未建立</h3><p>记录并编辑矿藏后，<br>将教训标记为置顶即可出现在这里</p></div>';
+    return;
+  }
+  const html = [];
+  // Pinned section
+  const pinned = records.filter(r => r.pinned && (r.lesson || r.action));
+  if (pinned.length) {
+    html.push('<div class="principles-section">');
+    html.push('<div class="principles-section-title">📌 置顶准则</div>');
+    pinned.forEach(r => {
+      const daysAgo = Math.floor((Date.now() - new Date(r.createdAt)) / 86400000);
+      const timeStr = daysAgo === 0 ? '今天' : daysAgo + '天前';
+      html.push('<div class="pinned-card">');
+      html.push('<div class="pinned-label"><i class="fas fa-thumbtack"></i> 置顶准则 · ' + (DOMAIN_NAMES[r.domain]||r.domain||'通用') + '</div>');
+      if (r.lesson) html.push('<div class="pinned-text">' + esc(r.lesson) + '</div>');
+      if (r.action) {
+        html.push('<div class="principle-action' + (r.actionDone ? ' done-action' : '') + '"><i class="fas fa-arrow-right" style="flex-shrink:0;color:var(--gold-mid);font-size:10px;margin-top:3px"></i><span>行动：' + esc(r.action) + '</span></div>');
+      }
+      html.push('<div class="principle-footer">'
+        + '<div class="pinned-meta">' + timeStr + '的' + TYPE_NAMES[r.type] + '记录</div>'
+        + '<div class="principle-actions">'
+        + (r.action ? '<button class="btn-icon' + (r.actionDone ? ' done-active' : '') + '" onclick="toggleActionDone(\'' + r.id + '\')" title="标记行动完成"><i class="fas fa-check"></i></button>' : '')
+        + '<button class="btn-icon pinned-active" onclick="togglePin(\'' + r.id + '\')" title="取消置顶"><i class="fas fa-thumbtack"></i></button>'
+        + '<button class="btn-icon" onclick="openDetail(\'' + r.id + '\')" title="查看详情"><i class="fas fa-eye"></i></button>'
+        + '</div></div>');
+      html.push('</div>');
+    });
+    html.push('</div>');
+  }
+
+  // Group by domain
+  const domainGroups = {};
+  records.forEach(r => {
+    if (!r.lesson && !r.action) return;
+    if (r.pinned) return; // already shown above
+    const d = r.domain || 'other';
+    if (!domainGroups[d]) domainGroups[d] = [];
+    domainGroups[d].push(r);
+  });
+
+  const domainEmojis = { career:'💼', relationship:'❤️', health:'🏃', finance:'💰', family:'🏠', study:'📚', mindset:'🧠', other:'🌱' };
+  const domainOrder = ['career','relationship','health','finance','family','study','mindset','other'];
+  const sortedDomains = [...Object.keys(domainGroups)].sort((a,b) => domainOrder.indexOf(a) - domainOrder.indexOf(b));
+
+  if (sortedDomains.length === 0 && !pinned.length) {
+    container.innerHTML = html.join('') + '<div class="empty-state"><div class="empty-icon">✏️</div><h3>暂无准则内容</h3><p>在记录详情中点击编辑，<br>填写核心教训和行动计划吧</p></div>';
+    return;
+  }
+
+  html.push('<div class="principles-section">');
+  if (sortedDomains.length) html.push('<div class="principles-section-title">📂 按领域分类</div>');
+  sortedDomains.forEach(domain => {
+    const items = domainGroups[domain];
+    html.push('<div class="domain-group">');
+    html.push('<div class="domain-group-title">' + (domainEmojis[domain]||'🌱') + ' ' + (DOMAIN_NAMES[domain]||domain) + '（' + items.length + '）</div>');
+    items.forEach(r => {
+      html.push('<div class="principle-item">');
+      if (r.lesson) html.push('<div class="principle-content">💡 ' + esc(r.lesson) + '</div>');
+      if (r.action) html.push('<div class="principle-action' + (r.actionDone ? ' done-action' : '') + '"><i class="fas fa-arrow-right" style="flex-shrink:0;color:var(--gold-mid);font-size:10px;margin-top:3px"></i><span>行动：' + esc(r.action) + '</span></div>');
+      const daysAgo = Math.floor((Date.now() - new Date(r.createdAt)) / 86400000);
+      html.push('<div class="principle-footer">'
+        + '<span class="principle-source" onclick="openDetail(\'' + r.id + '\')">' + (daysAgo === 0 ? '今天' : daysAgo + '天前') + '的' + TYPE_NAMES[r.type] + ' →</span>'
+        + '<div class="principle-actions">'
+        + (r.action ? '<button class="btn-icon' + (r.actionDone ? ' done-active' : '') + '" onclick="toggleActionDone(\'' + r.id + '\')" title="标记完成"><i class="fas fa-check"></i></button>' : '')
+        + '<button class="btn-icon' + (r.pinned ? ' pinned-active' : '') + '" onclick="togglePin(\'' + r.id + '\')" title="置顶"><i class="fas fa-thumbtack"></i></button>'
+        + '<button class="btn-icon" onclick="openEdit(\'' + r.id + '\')" title="编辑"><i class="fas fa-edit"></i></button>'
+        + '</div></div>');
+      html.push('</div>');
+    });
+    html.push('</div>');
+  });
+  html.push('</div>');
+  container.innerHTML = html.join('');
+}
+function togglePin(id) {
+  const records = getRecords();
+  const idx = records.findIndex(r => r.id === id);
+  if (idx === -1) return;
+  records[idx].pinned = !records[idx].pinned;
+  records[idx].updatedAt = new Date().toISOString();
+  saveRecords(records);
+  renderPrinciplesPage();
+  showToast(records[idx].pinned ? '📌 已置顶到准则库' : '已取消置顶');
+}
+function toggleActionDone(id) {
+  const records = getRecords();
+  const idx = records.findIndex(r => r.id === id);
+  if (idx === -1) return;
+  records[idx].actionDone = !records[idx].actionDone;
+  records[idx].updatedAt  = new Date().toISOString();
+  saveRecords(records);
+  renderPrinciplesPage();
+  showToast(records[idx].actionDone ? '✅ 行动已标记完成！' : '↩️ 已取消完成标记');
+}
+
+/* ============================================================
+   REVIEW PAGE
+   ============================================================ */
+function renderReviewPage() {
+  const records = getRecords();
+  const due = getDueRecords(records);
+  renderAiInsight(records, due);
+  const container = document.getElementById('reviewList');
+  if (due.length === 0) {
+    const all = records.length > 0 && records.every(r => r.reviewed);
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">' + (all ? '🏆' : '😴') + '</div><h3>' + (all ? '所有矿藏已复盘' : '暂无待复盘提醒') + '</h3><p>' + (all ? '你已挖掘了所有智慧！继续记录新的经历吧' : '未到复盘日期，好好休息～') + '</p></div>';
+    return;
+  }
+  const typeNames = TYPE_NAMES;
+  container.innerHTML = due.map(r => {
+    const daysAgo = Math.floor((Date.now() - new Date(r.createdAt)) / 86400000);
+    return '<div class="review-item" id="review-' + r.id + '">'
+      + '<button class="done-btn ' + (r.reviewed?'done':'') + '" id="done-' + r.id + '" onclick="markReviewed(\'' + r.id + '\')"><i class="fas fa-check"></i></button>'
+      + '<span class="badge-type ' + r.type + '" style="margin-bottom:10px;display:inline-flex">' + typeNames[r.type] + '</span>'
+      + '<div style="font-size:14px;color:var(--text-1);line-height:1.8;margin-bottom:8px;padding-right:46px">' + esc(r.content) + '</div>'
+      + (r.lesson ? '<div style="font-size:13px;color:var(--text-2);font-style:italic;padding-left:10px;border-left:2px solid var(--border-gold)">💡 ' + esc(r.lesson) + '</div>' : '')
+      + '<div style="font-size:11px;color:var(--text-3);margin-top:10px">' + daysAgo + ' 天前记录</div>'
+      + '<textarea class="reflection-input" id="reflection-' + r.id + '" placeholder="读到这段记录，现在的你有什么新想法..."></textarea>'
+      + '<button class="save-reflection-btn" onclick="saveReflection(\'' + r.id + '\')">💬 保存新想法</button>'
+      + '</div>';
+  }).join('');
+}
+function markReviewed(id) {
+  let records = getRecords();
+  const idx = records.findIndex(r => r.id === id);
+  if (idx === -1) return;
+  records[idx].reviewed = !records[idx].reviewed;
+  records[idx].reviewCount = Math.max(0, (records[idx].reviewCount||0) + (records[idx].reviewed ? 1 : -1));
+  records[idx].lastReviewedAt = new Date().toISOString();
+  saveRecords(records);
+  const btn = document.getElementById('done-' + id);
+  if (btn) btn.classList.toggle('done', records[idx].reviewed);
+  updateBellBadge(); renderHomePage();
+  showToast(records[idx].reviewed ? '✅ 复盘完成！' : '↩️ 已取消');
+}
+function saveReflection(id) {
+  const text = document.getElementById('reflection-' + id)?.value?.trim();
+  if (!text) { showToast('请输入新想法', 'warn'); return; }
+  let records = getRecords();
+  const idx = records.findIndex(r => r.id === id);
+  if (idx === -1) return;
+  if (!records[idx].reflections) records[idx].reflections = [];
+  records[idx].reflections.push({ text, date: new Date().toISOString() });
+  saveRecords(records);
+  document.getElementById('reflection-' + id).value = '';
+  showToast('💡 新想法已保存！');
+}
+function renderAiInsight(records, dueRecords) {
+  const container = document.getElementById('aiInsightContainer');
+  if (records.length < 2) {
+    container.innerHTML = '<div class="ai-card"><div class="ai-tag"><i class="fas fa-robot"></i> AI 矿山勘探师</div><div class="ai-body">继续记录更多经历，AI 将为你识别规律，提炼人生智慧。</div></div>';
+    return;
+  }
+  const regrets = records.filter(r => r.type === 'regret');
+  const exps    = records.filter(r => r.type === 'experience');
+  const domainCnt = {};
+  records.forEach(r => { if (r.domain) domainCnt[r.domain] = (domainCnt[r.domain]||0)+1; });
+  const topDomain = Object.entries(domainCnt).sort((a,b) => b[1]-a[1])[0];
+  let insight, suggest;
+  if (regrets.length > exps.length) {
+    insight = '你共记录了 <strong style="color:var(--gold-light)">' + records.length + '</strong> 条矿藏，后悔矿石居多（' + regrets.length + ' 条）。这说明你正处于深度反思阶段——这恰恰是成长最快的时期。';
+    suggest = '💡 把每条后悔记录的"核心教训"提炼成一句口诀，置顶到行为准则页。从遗憾中淬炼的智慧，是人生最宝贵的财富。';
+  } else {
+    insight = '你已积累了 <strong style="color:var(--gold-light)">' + exps.length + '</strong> 条宝贵经验矿脉。正向经验的积累表明你在持续成长。';
+    suggest = '💡 回顾你的经验矿脉，找出共同规律。重复出现的成功模式，就是你最强的核心优势。置顶到行为准则加以强化。';
+  }
+  if (topDomain) insight += ' 你最关注的领域是 <strong style="color:var(--gold-mid)">' + (DOMAIN_NAMES[topDomain[0]]||topDomain[0]) + '</strong>。';
+  container.innerHTML = '<div class="ai-card"><div class="ai-tag"><i class="fas fa-robot"></i> AI 矿山勘探师</div><div class="ai-body">' + insight + '</div><div class="ai-suggest">' + suggest + '</div></div>';
+}
+function checkReminders() { switchPage('review'); }
+function updateBellBadge() {
+  const records = getRecords();
+  const due = getDueRecords(records);
+  const badge = document.getElementById('bellBadge');
+  if (badge) badge.classList.toggle('show', due.length > 0);
+}
+
+/* ============================================================
+   STATS PAGE
+   ============================================================ */
+const WISDOM = [
+  { text: '每一次跌倒，都是向更坚实的地面迈出的一步。', author: '旧金山格言' },
+  { text: '后悔是一种奢侈品，只有把它转化为行动，才会变得有价值。', author: '旧金山格言' },
+  { text: '你所经历的一切，都是未来某个时刻的答案。', author: '旧金山格言' },
+  { text: '智慧不是避免错误，而是从每一个错误中学习。', author: '旧金山格言' },
+  { text: '过去是金矿，不是坟墓。关键在于你是否拿起了铲子。', author: '旧金山格言' },
+  { text: '最贵的教训，往往是亲身经历换来的。把它记录下来，让它物超所值。', author: '旧金山格言' }
+];
+function renderStatsPage() {
+  const records = getRecords();
+  const q = WISDOM[Math.floor(Math.random() * WISDOM.length)];
+  document.getElementById('wisdomCard').innerHTML = '<div class="wisdom-card" onclick="renderStatsPage()"><div class="wisdom-text">"' + q.text + '"</div><div class="wisdom-hint">— ' + q.author + ' · 点击换一条</div></div>';
+  renderTrendChart(records); renderTypeChart(records); renderDomainChart(records); renderPatterns(records);
+}
+function getChartTextColor() {
+  return document.documentElement.getAttribute('data-theme') === 'light' ? '#3A3A3C' : '#C8A86B';
+}
+function getChartGridColor() {
+  return document.documentElement.getAttribute('data-theme') === 'light' ? 'rgba(0,0,0,0.06)' : 'rgba(201,149,42,0.1)';
+}
+function renderTrendChart(records) {
+  const labels = [], data = [];
+  for (let i = 13; i >= 0; i--) {
+    const d = new Date(Date.now() - i * 86400000);
+    labels.push((d.getMonth()+1) + '/' + d.getDate());
+    data.push(records.filter(r => new Date(r.createdAt).toDateString() === d.toDateString()).length);
+  }
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  if (trendChart) trendChart.destroy();
+  const tc = getChartTextColor(); const gc = getChartGridColor();
+  trendChart = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets: [{ data, borderColor: '#F0C040', backgroundColor: 'rgba(240,192,64,0.12)', tension: 0.4, fill: true, pointBackgroundColor: '#F0C040', pointRadius: 3, borderWidth: 2 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: {
+      x: { ticks: { color: tc, font: { size: 10 }, maxRotation: 0 }, grid: { color: gc } },
+      y: { ticks: { color: tc, font: { size: 10 }, stepSize: 1 }, grid: { color: gc }, min: 0 }
+    }}
+  });
+}
+function renderTypeChart(records) {
+  const exp = records.filter(r => r.type==='experience').length;
+  const reg = records.filter(r => r.type==='regret').length;
+  const evt = records.filter(r => r.type==='event').length;
+  const mea = records.filter(r => r.type==='meaning').length;
+  const ctx = document.getElementById('typeChart').getContext('2d');
+  if (typeChart) typeChart.destroy();
+  const tc = getChartTextColor();
+  typeChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels: ['经验矿脉','后悔矿石','关键事件','意义矿脉'], datasets: [{ data: [exp,reg,evt,mea], backgroundColor: ['rgba(39,174,96,0.75)','rgba(192,57,43,0.75)','rgba(93,173,226,0.75)','rgba(99,102,241,0.72)'], borderColor: ['#2ECC71','#E74C3C','#5DADE2','#6366F1'], borderWidth: 2 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: tc, font: { size: 11 }, padding: 12, boxWidth: 12 } } }, cutout: '60%' }
+  });
+}
+function renderDomainChart(records) {
+  const cnt = {};
+  records.forEach(r => { if (r.domain) cnt[r.domain] = (cnt[r.domain]||0)+1; });
+  const entries = Object.entries(cnt).sort((a,b) => b[1]-a[1]).slice(0,6);
+  const ctx = document.getElementById('domainChart').getContext('2d');
+  if (domainChart) domainChart.destroy();
+  const tc = getChartTextColor(); const gc = getChartGridColor();
+  domainChart = new Chart(ctx, {
+    type: 'bar',
+    data: { labels: entries.map(([d]) => (DOMAIN_NAMES[d]||d)), datasets: [{ data: entries.map(([,v]) => v), backgroundColor: 'rgba(201,149,42,0.6)', borderColor: '#C9952A', borderWidth: 1, borderRadius: 4 }] },
+    options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } }, scales: {
+      x: { ticks: { color: tc, font: { size: 10 }, stepSize: 1 }, grid: { color: gc }, min: 0 },
+      y: { ticks: { color: tc, font: { size: 10 } }, grid: { display: false } }
+    }}
+  });
+}
+function renderPatterns(records) {
+  const container = document.getElementById('patternList');
+  if (!container) return;
+  const reviewed    = records.filter(r => r.reviewed).length;
+  const withLesson  = records.filter(r => r.lesson).length;
+  const withAction  = records.filter(r => r.action).length;
+  const actionDone  = records.filter(r => r.actionDone).length;
+  const pinned      = records.filter(r => r.pinned).length;
+  const domains     = [...new Set(records.map(r => r.domain).filter(Boolean))].length;
+  container.innerHTML = '<div class="pattern-grid">'
+    + mkPC('✅', reviewed, '已复盘') + mkPC('💡', withLesson, '有教训') + mkPC('🚀', withAction, '有行动')
+    + '</div><div class="pattern-grid" style="margin-top:10px">'
+    + mkPC('✓', actionDone, '行动完成') + mkPC('📌', pinned, '置顶准则') + mkPC('🌐', domains, '覆盖领域')
+    + '</div>';
+}
+function mkPC(emoji, n, label) {
+  return '<div class="pattern-card"><div class="pattern-card-title">' + emoji + ' ' + label + '</div><div class="pattern-num">' + n + '</div><div class="pattern-label">条记录</div></div>';
+}
+
+function genId(prefix) {
+  return safeId((prefix || 'id') + '_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10));
+}
+function normalizeForCompare(text) {
+  return String(text || '').replace(/\s+/g, '').trim().toLowerCase();
+}
+function getMonthKey(dateInput) {
+  const d = new Date(dateInput);
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+}
+function formatMonthLabel(key) {
+  const [y, m] = String(key).split('-');
+  return y + '年' + Number(m) + '月';
+}
+function getTodayKey() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function getDailyExperience(records) {
+  const used = new Set();
+  records.forEach(r => {
+    used.add(normalizeForCompare(r.content));
+    used.add(normalizeForCompare(r.lesson));
+    used.add(normalizeForCompare(r.action));
+  });
+  const pool = DAILY_EXPERIENCE_LIBRARY.filter(item => {
+    const signatures = [item.content, item.lesson, item.action].map(normalizeForCompare);
+    return signatures.every(sig => sig && !used.has(sig));
+  });
+  if (!pool.length) return null;
+  const seed = getTodayKey().replace(/-/g, '');
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+  return pool[hash % pool.length];
+}
+function renderDailyExperiencePush(records) {
+  const container = document.getElementById('dailyExperiencePush');
+  if (!container) return;
+  const item = getDailyExperience(records);
+  if (!item) {
+    container.innerHTML = '<div class="daily-push-card"><div class="daily-push-head"><div class="daily-push-tag"><i class="fas fa-sparkles"></i> 今日经验矿脉</div><div class="daily-push-date">已全部去重</div></div><div class="push-empty">当前内置经验池已与你的现有记录去重完成，说明你已经积累了很多经验矿脉。继续记录新的真实经历即可。</div></div>';
+    return;
+  }
+  container.innerHTML = '<div class="daily-push-card">'
+    + '<div class="daily-push-head"><div class="daily-push-tag"><i class="fas fa-sparkles"></i> 今日经验矿脉</div><div class="daily-push-date">' + getTodayKey().replace(/-/g, '.') + '</div></div>'
+    + '<div class="daily-push-title">今天值得记住的一条经验</div>'
+    + '<div class="daily-push-body">' + esc(item.content) + '</div>'
+    + '<div class="daily-push-insight">💡 ' + esc(item.lesson) + '</div>'
+    + '<div class="daily-push-actions"><button class="secondary-btn" onclick="saveDailyExperienceToMine()"><i class="fas fa-bookmark"></i> 收录进矿藏库</button><button class="tertiary-btn" onclick="prefillExperienceFromDailyPush()"><i class="fas fa-pen"></i> 写下我的版本</button></div>'
+    + '</div>';
+}
+function saveDailyExperienceToMine() {
+  const item = getDailyExperience(getRecords());
+  if (!item) { showToast('今日经验池已无可收录内容', 'warn'); return; }
+  const now = new Date();
+  const records = getRecords();
+  records.unshift({ id: genId('daily'), type: 'experience', content: item.content, lesson: item.lesson, action: item.action, emotion: item.emotion || '激励', emoji: item.emoji || '💪', domain: item.domain || 'other', reminderDays: 30, reminderDate: new Date(now.getTime() + 30 * 86400000).toISOString(), reviewed: false, reviewCount: 0, pinned: false, actionDone: false, reflections: [], createdAt: now.toISOString(), updatedAt: now.toISOString() });
+  saveRecords(records);
+  updateStreak();
+  renderHomePage();
+  renderMineList();
+  updateBellBadge();
+  showToast('🌿 已收录今日经验矿脉');
+}
+function prefillExperienceFromDailyPush() {
+  const item = getDailyExperience(getRecords());
+  if (!item) { showToast('今日暂无可预填经验', 'warn'); return; }
+  selectType('experience');
+  document.getElementById('inputContent').value = item.content;
+  document.getElementById('inputLesson').value = item.lesson || '';
+  document.getElementById('inputAction').value = item.action || '';
+  document.getElementById('inputDomain').value = item.domain || '';
+  if (item.emoji && item.emotion) selectEmotion(item.emoji, item.emotion);
+  saveDraft();
+  switchPage('add');
+  showToast('已预填今日经验矿脉');
+}
+function renderMeaningCheckinCard() {
+  const container = document.getElementById('meaningCheckinCard');
+  if (!container) return;
+  const prefs = getPrefs();
+  const checked = prefs.lastMeaningCheckinDate === getTodayKey();
+  container.innerHTML = '<div class="meaning-card">'
+    + '<div class="meaning-head"><div><div class="meaning-title">✅ 今日打卡 · 意义矿脉</div><div class="meaning-desc">一句话记下今天真正有意义的事，未来复盘时会更快看见自己的成长线索。</div></div><div class="meaning-badge"><i class="fas fa-check-circle"></i> ' + (checked ? '今日已打卡' : '今日待打卡') + '</div></div>'
+    + '<div class="meaning-grid">'
+    + '<textarea class="f-textarea" id="meaningContent" placeholder="今天最有意义的一件事是..." style="min-height:80px"></textarea>'
+    + '<div class="meaning-row"><input class="f-input" id="meaningLesson" type="text" placeholder="它为什么有意义？（可选）"><select class="f-select" id="meaningDomain"><option value="">选择领域...</option><option value="career">💼 职业发展</option><option value="relationship">❤️ 人际关系</option><option value="health">🏃 健康生活</option><option value="finance">💰 财务决策</option><option value="family">🏠 家庭亲情</option><option value="study">📚 学习成长</option><option value="mindset">🧠 心理认知</option><option value="other">🌱 其他</option></select></div>'
+    + '<div class="meaning-helper">建议只记录今天最重要的一件事，后面查阅会更高效。</div>'
+    + '<div class="meaning-actions"><button class="secondary-btn" onclick="submitMeaningCheckin()"><i class="fas fa-check"></i> 立即打卡</button><button class="tertiary-btn" onclick="openAddWithType(\'meaning\')"><i class="fas fa-expand"></i> 用完整表单记录</button></div>'
+    + '</div></div>';
+  const draft = getDraft();
+  if (draft.meaningContent) document.getElementById('meaningContent').value = draft.meaningContent;
+  if (draft.meaningLesson) document.getElementById('meaningLesson').value = draft.meaningLesson;
+  if (draft.meaningDomain) document.getElementById('meaningDomain').value = draft.meaningDomain;
+}
+function submitMeaningCheckin() {
+  const content = (document.getElementById('meaningContent')?.value || '').trim().slice(0, 5000);
+  if (!content) { showToast('请先写下今天有意义的一件事', 'err'); return; }
+  const lesson = (document.getElementById('meaningLesson')?.value || '').trim().slice(0, 2000);
+  const domain = document.getElementById('meaningDomain')?.value || '';
+  const now = new Date();
+  const records = getRecords();
+  records.unshift({ id: genId('meaning'), type: 'meaning', content, lesson, action: '', emotion: '感恩', emoji: '🙏', domain, reminderDays: 7, reminderDate: new Date(now.getTime() + 7 * 86400000).toISOString(), reviewed: false, reviewCount: 0, pinned: false, actionDone: false, reflections: [], createdAt: now.toISOString(), updatedAt: now.toISOString() });
+  saveRecords(records);
+  const prefs = getPrefs();
+  prefs.lastMeaningCheckinDate = getTodayKey();
+  savePrefs(prefs);
+  updateStreak();
+  ['meaningContent','meaningLesson'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  const d = document.getElementById('meaningDomain'); if (d) d.value = '';
+  saveDraft();
+  renderHomePage();
+  renderMineList();
+  updateBellBadge();
+  showToast('✅ 今日意义矿脉已打卡');
+}
+function updateMineToolbar(filtered, q) {
+  const countEl = document.getElementById('mineToolbarCount');
+  const metaEl = document.getElementById('mineToolbarMeta');
+  if (countEl) countEl.textContent = filtered.length;
+  if (metaEl) metaEl.textContent = q ? '当前检索：' + q + ' · 已按月份折叠整理' : '已按月份分组，可快速跳转与展开';
+}
+function updateMineMonthJump(filtered) {
+  const select = document.getElementById('mineMonthJump');
+  if (!select) return;
+  const current = select.value;
+  const counts = {};
+  filtered.forEach(r => { const key = getMonthKey(r.createdAt); counts[key] = (counts[key] || 0) + 1; });
+  const months = Object.keys(counts).sort((a, b) => b.localeCompare(a));
+  select.innerHTML = '<option value="">按月份跳转</option>' + months.map(key => '<option value="' + key + '">' + formatMonthLabel(key) + '（' + counts[key] + '）</option>').join('');
+  if (months.includes(current)) select.value = current;
+}
+function toggleMineMonth(key) {
+  mineCollapseState[key] = !mineCollapseState[key];
+  renderMineList();
+}
+function expandAllMineGroups() {
+  Object.keys(mineCollapseState).forEach(key => { mineCollapseState[key] = false; });
+  renderMineList();
+}
+function jumpToMineMonth(key) {
+  if (!key) return;
+  if (mineCollapseState[key]) mineCollapseState[key] = false;
+  renderMineList();
+  requestAnimationFrame(() => {
+    const el = document.getElementById('month-' + key);
+    if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+}
+function bindMineScroll() {
+  const page = document.getElementById('page-mine');
+  if (!page || page.dataset.scrollBound) return;
+  page.addEventListener('scroll', updateMineBackToTop, { passive:true });
+  page.dataset.scrollBound = '1';
+}
+function updateMineBackToTop() {
+  const page = document.getElementById('page-mine');
+  const btn = document.getElementById('mineScrollTopBtn');
+  if (!page || !btn) return;
+  btn.classList.toggle('show', page.classList.contains('active') && page.scrollTop > 360);
+}
+function scrollMineToTop() {
+  const page = document.getElementById('page-mine');
+  if (page) page.scrollTo({ top:0, behavior:'smooth' });
+}
+
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+function showToast(msg, type) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = '';
+  void el.offsetWidth; // force reflow
+  el.classList.add('show');
+  if (type) el.classList.add(type);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
+}
+
+/* ============================================================
+   ESCAPE HTML
+   ============================================================ */
+function esc(text) {
+  if (!text) return '';
+  return String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function safeId(id) {
+  return String(id || '').replace(/[^a-zA-Z0-9_-]/g, '');
+}
+
+/* ============================================================
+   SAMPLE DATA
+   ============================================================ */
+function initSampleData() {
+  if (getRecords().length > 0) return;
+  const now = Date.now();
+  const samples = [
+    { id:'s1', type:'regret', content:'三年前因为害怕失败，放弃了一个创业机会，后来那个方向做得很大。', lesson:'机会成本是真实存在的。不行动的代价有时比失败的代价更高。', action:'遇到机会时，先评估最坏结果是否可承受，而非先评估成功概率。', emotion:'后悔', emoji:'😔', domain:'career', reminderDays:30, reminderDate:new Date(now-1000).toISOString(), reviewed:false, reviewCount:0, pinned:true, actionDone:false, reflections:[], createdAt:new Date(now-90*86400000).toISOString(), updatedAt:new Date(now-90*86400000).toISOString() },
+    { id:'s2', type:'experience', content:'坚持每天早起一小时阅读，持续三个月后，思维明显更清晰，解决问题的能力提升了。', lesson:'习惯的力量是指数级的，前期投入的坚持会在后期产生复利。', action:'保持早起阅读习惯，并扩展到其他想建立的好习惯。', emotion:'激励', emoji:'💪', domain:'study', reminderDays:90, reminderDate:new Date(now+80*86400000).toISOString(), reviewed:false, reviewCount:0, pinned:false, actionDone:false, reflections:[], createdAt:new Date(now-10*86400000).toISOString(), updatedAt:new Date(now-10*86400000).toISOString() },
+    { id:'s3', type:'event', content:'今天第一次公开演讲，虽然紧张，但顺利完成。台下有人专门来感谢我的分享让他们受益。', lesson:'走出舒适区的第一步永远是最难的，但迈出去之后就会发现没那么可怕。', action:'接受更多公开分享机会，刻意练习表达能力。', emotion:'喜悦', emoji:'😄', domain:'mindset', reminderDays:365, reminderDate:new Date(now+360*86400000).toISOString(), reviewed:false, reviewCount:0, pinned:false, actionDone:false, reflections:[], createdAt:new Date(now-3*86400000).toISOString(), updatedAt:new Date(now-3*86400000).toISOString() },
+    { id:'s4', type:'regret', content:'因为一时赌气，和最好的朋友大吵一架，之后各走各路。那段友谊就此结束。', lesson:'情绪激动时说出的话，往往比任何伤害都更持久。先冷静，再沟通。', action:'遇到冲突时，给自己24小时冷静期再回应重要关系。', emotion:'悲伤', emoji:'😢', domain:'relationship', reminderDays:30, reminderDate:new Date(now+25*86400000).toISOString(), reviewed:false, reviewCount:0, pinned:false, actionDone:false, reflections:[], createdAt:new Date(now-5*86400000).toISOString(), updatedAt:new Date(now-5*86400000).toISOString() }
+  ];
+  saveRecords(samples);
+  const prefs = getPrefs();
+  prefs.streak = 3; prefs.lastRecordDate = new Date().toDateString();
+  savePrefs(prefs);
+}
+
+/* ============================================================
+   SERVICE WORKER & PWA MANIFEST
+   ============================================================ */
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(() => console.log('SW: registered'))
+      .catch(err => console.log('SW: failed', err));
+  }
+}
+function injectPWAManifest() {
+  // Use static manifest file for stable PWA install
+  const link = document.getElementById('pwa-manifest');
+  if (link && !link.getAttribute('href').includes('manifest')) {
+    link.href = './manifest.webmanifest';
+  }
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  loadTheme();
+  createParticles();
+  selectType('experience');
+  selectReminder(30);
+  injectPWAManifest();
+});
+</script>
+</body>
+</html>
