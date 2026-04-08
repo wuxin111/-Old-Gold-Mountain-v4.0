@@ -1449,6 +1449,72 @@ html, body {
   <button class="install-close" onclick="dismissInstall()" aria-label="关闭"><i class="fas fa-times"></i></button>
 </div>
 
+<!-- 在 index.html 的主要 <script> 块内，靠近文件底部，</script> 之前插入 -->
+
+<script>
+// ==================== PWA 安装按钮增强逻辑 ====================
+
+let deferredPrompt;           // 保存安装事件
+let installButton;            // 全局按钮引用
+
+// 1. 监听浏览器安装提示事件
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();           // 阻止浏览器默认横幅
+    deferredPrompt = e;           // 保存事件供后续使用
+    
+    console.log('📲 PWA 安装提示已捕获，可显示自定义按钮');
+    
+    // 显示所有安装按钮（您可以设置多个位置）
+    showInstallButtons();
+});
+
+// 2. 显示安装按钮的统一函数
+function showInstallButtons() {
+    const buttons = document.querySelectorAll('.pwa-install-btn');
+    buttons.forEach(btn => {
+        btn.style.display = 'flex';   // 或 'block'，根据您的样式调整
+    });
+}
+
+// 3. 安装按钮点击处理函数
+function handleInstallClick() {
+    if (!deferredPrompt) {
+        alert('当前浏览器不支持一键安装，请使用浏览器菜单或 Safari「添加到主屏幕」');
+        return;
+    }
+
+    deferredPrompt.prompt();   // 弹出系统安装对话框
+
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+            console.log('✅ 用户已安装应用');
+            // 可在此隐藏按钮或显示成功提示
+            hideInstallButtons();
+        } else {
+            console.log('❌ 用户取消安装');
+        }
+        deferredPrompt = null;   // 重置，防止重复使用
+    });
+}
+
+// 4. 隐藏所有安装按钮
+function hideInstallButtons() {
+    const buttons = document.querySelectorAll('.pwa-install-btn');
+    buttons.forEach(btn => btn.style.display = 'none');
+}
+
+// 5. 初始化：页面加载完成后绑定按钮事件
+document.addEventListener('DOMContentLoaded', () => {
+    // 自动寻找所有 class 为 pwa-install-btn 的按钮并绑定
+    installButton = document.querySelectorAll('.pwa-install-btn');
+    
+    installButton.forEach(btn => {
+        btn.addEventListener('click', handleInstallClick);
+    });
+
+    // 可选：如果希望首次进入就提示，可在此添加轻量引导
+    // setTimeout(() => { if (deferredPrompt) showInstallButtons(); }, 1500);
+});
 <script>
 /* ============================================================
    CONSTANTS & STATE
